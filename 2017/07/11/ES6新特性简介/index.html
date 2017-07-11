@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="前端,js,ES6," />
 
 
 
@@ -93,15 +93,17 @@
 
 
 
-<meta name="description" content="Better myself!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MrLiZ">
-<meta property="og:url" content="https://mrliz.github.io/index.html">
+<meta name="description" content="参考链接：http://www.jianshu.com/p/ebfeb687eb70 ECMAScript 6（以下简称ES6）是JavaScript语言的下一代标准。因为当前版本的ES6是在2015年发布的，所以又称ECMAScript 2015。也就是说，ES6就是ES2015。 虽然目前并不是所有浏览器都能兼容ES6全部特性，但越来越多的程序员在实际项目当中已经开始使用ES6了。所以就算你现">
+<meta name="keywords" content="前端,js,ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6新特性简介">
+<meta property="og:url" content="https://mrliz.github.io/2017/07/11/ES6新特性简介/index.html">
 <meta property="og:site_name" content="MrLiZ">
-<meta property="og:description" content="Better myself!">
+<meta property="og:description" content="参考链接：http://www.jianshu.com/p/ebfeb687eb70 ECMAScript 6（以下简称ES6）是JavaScript语言的下一代标准。因为当前版本的ES6是在2015年发布的，所以又称ECMAScript 2015。也就是说，ES6就是ES2015。 虽然目前并不是所有浏览器都能兼容ES6全部特性，但越来越多的程序员在实际项目当中已经开始使用ES6了。所以就算你现">
+<meta property="og:updated_time" content="2017-07-11T16:40:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MrLiZ">
-<meta name="twitter:description" content="Better myself!">
+<meta name="twitter:title" content="ES6新特性简介">
+<meta name="twitter:description" content="参考链接：http://www.jianshu.com/p/ebfeb687eb70 ECMAScript 6（以下简称ES6）是JavaScript语言的下一代标准。因为当前版本的ES6是在2015年发布的，所以又称ECMAScript 2015。也就是说，ES6就是ES2015。 虽然目前并不是所有浏览器都能兼容ES6全部特性，但越来越多的程序员在实际项目当中已经开始使用ES6了。所以就算你现">
 
 
 
@@ -129,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://mrliz.github.io/"/>
+  <link rel="canonical" href="https://mrliz.github.io/2017/07/11/ES6新特性简介/"/>
 
 
 
 
 
-  <title>MrLiZ</title>
+  <title>ES6新特性简介 | MrLiZ</title>
   
 
 
@@ -160,9 +162,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-   page-home 
- ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -255,9 +255,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -283,9 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/11/ES6新特性简介/" itemprop="url">ES6新特性简介</a></h1>
+          <h1 class="post-title" itemprop="name headline">ES6新特性简介</h1>
         
 
         <div class="post-meta">
@@ -354,9 +352,7 @@
       
 
       
-        
-          
-            <p>参考链接：<a href="http://www.jianshu.com/p/ebfeb687eb70" target="_blank" rel="external">http://www.jianshu.com/p/ebfeb687eb70</a></p>
+        <p>参考链接：<a href="http://www.jianshu.com/p/ebfeb687eb70" target="_blank" rel="external">http://www.jianshu.com/p/ebfeb687eb70</a></p>
 <p>ECMAScript 6（以下简称ES6）是JavaScript语言的下一代标准。因为当前版本的ES6是在2015年发布的，所以又称ECMAScript 2015。<br>也就是说，ES6就是ES2015。</p>
 <p>虽然目前并不是所有浏览器都能兼容ES6全部特性，但越来越多的程序员在实际项目当中已经开始使用ES6了。所以就算你现在不打算使用ES6，但为了看懂别人的你也该懂点ES6的语法了…</p>
 <p>在我们正式讲解ES6语法之前，我们得先了解下<a href="https://babeljs.io/" target="_blank" rel="external">Babel</a>。<a href="https://babeljs.io/" target="_blank" rel="external">Babel</a>是一个广泛使用的ES6转码器，可以将ES6代码转为ES5代码，从而在现有环境执行。大家可以选择自己习惯的工具来使用使用Babel，具体过程可直接在Babel官网查看。</p>
@@ -433,42 +429,60 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function animals(...types)&#123;</div><div class="line">    console.log(types)</div><div class="line">&#125;</div><div class="line">animals(&apos;cat&apos;, &apos;dog&apos;, &apos;fish&apos;) //[&quot;cat&quot;, &quot;dog&quot;, &quot;fish&quot;]</div></pre></td></tr></table></figure>
 <p>而如果不用ES6的话，我们则得使用ES5的arguments。</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -476,6 +490,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -495,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -569,6 +596,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最常用的ES6特性"><span class="nav-number">1.</span> <span class="nav-text">最常用的ES6特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#let-const"><span class="nav-number">1.1.</span> <span class="nav-text">let, const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class-extends-super"><span class="nav-number">1.2.</span> <span class="nav-text">class, extends, super</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arrow-function"><span class="nav-number">1.3.</span> <span class="nav-text">arrow function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#template-string"><span class="nav-number">1.4.</span> <span class="nav-text">template string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#destructuring"><span class="nav-number">1.5.</span> <span class="nav-text">destructuring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#default-rest"><span class="nav-number">1.6.</span> <span class="nav-text">default, rest</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -682,10 +725,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
