@@ -1,0 +1,15 @@
+themes/next/.bowerrc
+themes/next/.editorconfig
+themes/next/.hound.yml
+themes/next/.javascript_ignore
+themes/next/.jshintrc
+themes/next/.stylintrc
+themes/next/.travis.yml
+
+.bowerrc
+.editorconfig
+.hound.yml
+.javascript_ignore
+.jshintrc
+.stylintrc
+.travis.yml
