@@ -360,7 +360,7 @@
 <p>参考：<a href="https://www.amazon.cn/%E5%9B%BE%E4%B9%A6/dp/B00BQ7RMW0/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1499870567&amp;sr=1-1&amp;keywords=%E7%BC%96%E5%86%99%E5%8F%AF%E7%BB%B4%E6%8A%A4%E7%9A%84javascript" target="_blank" rel="external">编写可维护的JavaScript</a></p>
 </blockquote>
 <h3 id="基本规范"><a href="#基本规范" class="headerlink" title="基本规范"></a>基本规范</h3><ul>
-<li>禁止使用递归（驾驭不了容易导致程序崩溃）</li>
+<li>使用递归方式，一定要有结束条件，如果结束条件不确定，要有调用次数</li>
 <li><p>每一层级4个空格缩进，禁止使用制表符缩进（可以设置webstorm tab键为四个空格）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (someCondition) &#123;</div><div class="line">    doSomething();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
