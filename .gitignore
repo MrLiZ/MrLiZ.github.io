@@ -13,3 +13,6 @@ themes/next/.travis.yml
 .jshintrc
 .stylintrc
 .travis.yml
+
+public/*
+db.json
