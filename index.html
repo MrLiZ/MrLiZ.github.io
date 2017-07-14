@@ -356,146 +356,18 @@
       
         
           
-            <blockquote>
-<p>参考：<a href="http://www.hubwiz.com/course/54f031e2f8638715e4cb8e0c/" target="_blank" rel="external">Nginx入门-汇智网</a></p>
-</blockquote>
-<h2 id="nginx概述及常用命令"><a href="#nginx概述及常用命令" class="headerlink" title="nginx概述及常用命令"></a>nginx概述及常用命令</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Nginx (“engine x”)是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP 代理服务器。Nginx是由Igor Sysoev为俄罗斯访问量第二的Rambler.ru站点开发的，第一个公开版本0.1.0发布于2004年10月4日。其将源代码以类BSD许可证的形式发布，因它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名。2011年6月1日，nginx 1.0.4发布。</p>
-<p>Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。由俄罗斯的程序设计师Igor Sysoev所开发，供俄国大型的入口网站及搜索引擎Rambler（俄文：Рамблер）使用。其特点是占有内存少，并发能力强，事实上nginx的并发能力确实在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：新浪、网易、腾讯等。</p>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="nginx启动"><a href="#nginx启动" class="headerlink" title="nginx启动"></a>nginx启动</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -c /etc/nginx/nginx.conf</div></pre></td></tr></table></figure>
-<p>其中参数-c指定nginx启动时加载的配置文件，当然也可以不指定配置文件，省略-c，也可以启动，表示使用默认的配置文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx</div></pre></td></tr></table></figure></p>
-<h4 id="nginx停止"><a href="#nginx停止" class="headerlink" title="nginx停止"></a>nginx停止</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -s stop</div></pre></td></tr></table></figure>
-<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -s quit</div></pre></td></tr></table></figure></p>
-<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pkill -9 nginx</div></pre></td></tr></table></figure></p>
-<p>例如在我们的编辑环境中已经安装好了nginx,并且已启动,在命令提示符下直接输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -s stop</div></pre></td></tr></table></figure></p>
-<p>就可以停止了。</p>
-<h4 id="nginx重载配置"><a href="#nginx重载配置" class="headerlink" title="nginx重载配置"></a>nginx重载配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -s reload</div></pre></td></tr></table></figure>
-<h4 id="检查配置文件是否正确"><a href="#检查配置文件是否正确" class="headerlink" title="检查配置文件是否正确"></a>检查配置文件是否正确</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nginx -t</div></pre></td></tr></table></figure>
-<h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><h3 id="默认配置"><a href="#默认配置" class="headerlink" title="默认配置"></a>默认配置</h3><p>下面的代码为nginx.conf配置文件中的server段的默认配置，nginx所实现的功能都基于这个文件。我们将在后面的内容中继续进行讲解。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       80;</div><div class="line">    server_name  localhost;</div><div class="line">    #charset koi8-r;</div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line">    location / &#123;</div><div class="line">        root   /root;      #定义服务器的默认网站根目录位置</div><div class="line">        index index.php index.html index.htm;   #定义首页索引文件的名称</div><div class="line">    &#125;</div><div class="line">    #error_page  404              /404.html;</div><div class="line">    # redirect server error pages to the static page /50x.html</div><div class="line">    error_page   500 502 503 504  /50x.html;</div><div class="line">        location = /50x.html &#123;</div><div class="line">        root   html;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="nginx配置系统"><a href="#nginx配置系统" class="headerlink" title="nginx配置系统"></a>nginx配置系统</h3><p>nginx的配置系统由一个主配置文件和其他一些辅助的配置文件构成。这些配置文件均是纯文本文件，全部位于nginx安装目录下的conf目录下。</p>
-<p>配置文件中以#开始的行，或者是前面有若干空格或者TAB，然后再跟#的行，都被认为是注释，也就是只对编辑查看文件的用户有意义，程序在读取这些注释行的时候，其实际的内容是被忽略的。</p>
-<p>由于除主配置文件nginx.conf以外的文件都是在某些情况下才使用的，而只有主配置文件是在任何情况下都被使用的。所以在这里我们就以主配置文件为例，来解释nginx的配置系统。</p>
-<p>在nginx.conf中，包含若干配置项。每个配置项由配置指令和指令参数2个部分构成。指令参数也就是配置指令对应的配置值。</p>
-<p>配置指令是一个字符串，可以用单引号或者双引号括起来，也可以不括。但是如果配置指令包含空格，一定要引起来。</p>
-<p>指令的参数使用一个或者多个空格或者TAB字符与指令分开。指令的参数有一个或者多个TOKEN串组成。TOKEN串之间由空格或者TAB键分隔。</p>
-<h3 id="配置文件结构-nginx-conf"><a href="#配置文件结构-nginx-conf" class="headerlink" title="配置文件结构(nginx.conf)"></a>配置文件结构(nginx.conf)</h3><p>Nginx的核心模块为Main和Events，此外还包括标准HTTP模块、可选HTTP模块和邮件模块，其还可以支持诸多第三方模块。Main用于配置错误日志、进程及权限等相关的参数，Events用于配置IO模型，如epoll、kqueue、select或poll等，它们是必备模块，HTTP模块用于控制Nginx的HTTP进程。</p>
-<p>Nginx的主配置文件由几个段组成，这个段通常也被称为nginx的上下文，每个段的定义格式如下所示。需要注意的是，其每一个指令都必须使用分号(;)结束，否则为语法错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;section&gt; &#123;</div><div class="line">    &lt;directive&gt; &lt;parameters&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>主要结构（所有配置以分号结尾）如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">##Main段，定义全局属性</div><div class="line">events &#123;</div><div class="line">    ##定义不同IO模型下的工作机制；</div><div class="line">&#125;</div><div class="line"></div><div class="line">http &#123; </div><div class="line">    ##定义作为web服务器的相关属性（还可以反向代理mail）</div><div class="line">    server &#123;</div><div class="line">        ##定义一个虚拟主机的属性，所有web服务必须定义成一个虚拟主机，与httpd不同</div><div class="line">        location [option] uri &#123; </div><div class="line">            ##定义一个URI的特性</div><div class="line">            ##location中可以嵌套location的</div><div class="line">            location [option] uri &#123; </div><div class="line">                #嵌套location</div><div class="line">            &#125;</div><div class="line">            if (condition) &#123;</div><div class="line">                ##定义URL重写</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    upstream  &lt;Name&gt; &#123;</div><div class="line">        ##将多个server结合在一起，实现负载均衡</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="main段配置指令"><a href="#main段配置指令" class="headerlink" title="main段配置指令"></a>main段配置指令</h3><p>定义Nginx运行的用户和用户组用user指令。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">user www-data;</div></pre></td></tr></table></figure></p>
-<p>定义nginx进程数，用worker_processes指令，建议设置为等于CPU总核心数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">worker_processes 8;</div></pre></td></tr></table></figure></p>
-<p>全局错误日志定义类型，[ debug | info | notice | warn | error | crit ]用error_log指令。另外日志还可以定义在http、server及location上下文中，语法格式一样。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">error_log /var/log/nginx/error.log info;</div></pre></td></tr></table></figure></p>
-<p>定义进程文件用pid指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pid /var/run/nginx.pid;</div></pre></td></tr></table></figure></p>
-<p>用worker_rlimit_nofile指令描述nginx进程打开的最多文件描述符的数目，建议设置为默认值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">worker_rlimit_nofile 65535;</div></pre></td></tr></table></figure></p>
-<h3 id="event段配置指令"><a href="#event段配置指令" class="headerlink" title="event段配置指令"></a>event段配置指令</h3><p>参考事件模型指令：use [ kqueue | rtsig | epoll | /dev/poll | select | poll ];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">use epoll;</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>注：epoll模型是Linux 2.6以上版本内核中的高性能网络I/O模型，如果跑在FreeBSD上面，就用kqueue模型。</p>
-</blockquote>
-<p>设置单个进程最大连接数用指令：worker_connections（最大连接数=连接数*进程数）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">worker_connections 65535;</div></pre></td></tr></table></figure></p>
-<h3 id="http段配置指令"><a href="#http段配置指令" class="headerlink" title="http段配置指令"></a>http段配置指令</h3><p>设定mime类型,类型由mime.type文件定义 用include指令.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">include       /etc/nginx/mime.types;</div><div class="line">default_type  application/octet-stream;</div></pre></td></tr></table></figure></p>
-<p>开启gzip压缩指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gzip on;</div><div class="line">gzip_disable &quot;MSIE [1-6]\.(?!.*SV1)&quot;;</div></pre></td></tr></table></figure></p>
-<p>设定负载均衡的服务器列表用指令upstream。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">upstream mysvr &#123;</div><div class="line">    #weigth参数表示权值，权值越高被分配到的几率越大</div><div class="line">    #本机上的Squid开启3128端口</div><div class="line">    server 192.168.8.1:3128 weight=5;</div><div class="line">    server 192.168.8.2:80  weight=1;</div><div class="line">    server 192.168.8.3:80  weight=6;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>设定虚拟主机用指令server，其中包括端口，主机名称，默认请求等设置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    #侦听80端口</div><div class="line">    listen       80;</div><div class="line">    </div><div class="line">    #定义使用www.xx.com访问</div><div class="line">    server_name  www.xx.com;</div><div class="line">    </div><div class="line">    #设定本虚拟主机的访问日志</div><div class="line">    access_log  logs/www.xx.com.access.log  main;</div><div class="line">    </div><div class="line">    #默认请求</div><div class="line">    location / &#123;</div><div class="line">        root   /root;      #定义服务器的默认网站根目录位置</div><div class="line">        index index.php index.html index.htm;   #定义首页索引文件的名称</div><div class="line">        fastcgi_pass  www.xx.com;</div><div class="line">        fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;</div><div class="line">        include /etc/nginx/fastcgi_params;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    # 定义错误提示页面</div><div class="line">    error_page   500 502 503 504 /50x.html; </div><div class="line">    location = /50x.html &#123;</div><div class="line">        root   /root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>请求转向指令proxy_pass<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proxy_pass http://www.hubwiz.com;</div></pre></td></tr></table></figure></p>
-<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>负载均衡（又称为负载分担），英文名称为Load Balance，其意思就是将负载（工作任务）进行平衡、分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。</p>
-<p>nginx的upstream目前支持4种方式的分配</p>
-<ul>
-<li>轮询（默认） 每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。</li>
-<li>weight 指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。</li>
-<li>ip_hash 每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。</li>
-<li>fair（第三方） 按后端服务器的响应时间来分配请求，响应时间短的优先分配。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">upstream ixdba.net&#123;</div><div class="line">    ip_hash;</div><div class="line">    server 192.168.12.133:80;</div><div class="line">    server 192.168.12.134:80  down;</div><div class="line">    server 192.168.12.135:8009  max_fails=3  fail_timeout=20s;</div><div class="line">    server 192.168.12.136:8080;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>upstream是Nginx的HTTP Upstream模块，这个模块通过一个简单的调度算法来实现客户端IP到后端服务器的负载均衡。在上面的设定中，通过upstream指令指定了一个负载均衡器的名称ixdba.net。这个名称可以任意指定，在后面需要的地方直接调用即可。</p>
-<h3 id="location配置"><a href="#location配置" class="headerlink" title="location配置"></a>location配置</h3><p>语法规则：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">location [=|~|~*|^~] /uri/ &#123; … &#125;</div></pre></td></tr></table></figure></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">通配符</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">    =</td>
-<td style="text-align:center">开头表示精确匹配</td>
-</tr>
-<tr>
-<td style="text-align:center">    ^~</td>
-<td style="text-align:center">开头表示uri以某个常规字符串开头，理解为匹配 url路径即可</td>
-</tr>
-<tr>
-<td style="text-align:center">    ~</td>
-<td style="text-align:center">开头表示区分大小写的正则匹配</td>
-</tr>
-<tr>
-<td style="text-align:center">    !~</td>
-<td style="text-align:center">区分大小写不匹配</td>
-</tr>
-<tr>
-<td style="text-align:center">    !~*</td>
-<td style="text-align:center">不区分大小写不匹配</td>
-</tr>
-<tr>
-<td style="text-align:center">    ~*</td>
-<td style="text-align:center">开头表示不区分大小写的正则匹配</td>
-</tr>
-<tr>
-<td style="text-align:center">    /</td>
-<td style="text-align:center">通用匹配，任何请求都会匹配到</td>
-</tr>
-</tbody>
-</table>
-<p>首先匹配 =，其次匹配^~, 其次是按文件中顺序的正则匹配，最后是交给 / 通用匹配。当有匹配成功时候，停止匹配，按当前匹配规则处理请求。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">location = / &#123;</div><div class="line">    #规则A</div><div class="line">&#125;</div><div class="line"></div><div class="line">location = /login &#123;</div><div class="line">    #规则B</div><div class="line">&#125;</div><div class="line"></div><div class="line">location ^~ /static/ &#123;</div><div class="line">    #规则C</div><div class="line">&#125;</div><div class="line"></div><div class="line">location ~ \.(gif|jpg|png|js|css)$ &#123;</div><div class="line">    #规则D</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>那么产生的效果如下：<br>访问根目录/， 比如<a href="http://localhost/" target="_blank" rel="external">http://localhost/</a> 将匹配规则A； 访问 <a href="http://localhost/login" target="_blank" rel="external">http://localhost/login</a> 将匹配规则B； 访问 <a href="http://localhost/static/a.html" target="_blank" rel="external">http://localhost/static/a.html</a> 将匹配规则C； 访问 <a href="http://localhost/a.gif" target="_blank" rel="external">http://localhost/a.gif</a>, <a href="http://localhost/b.jpg" target="_blank" rel="external">http://localhost/b.jpg</a> 将匹配规则D。</p>
-<h3 id="Rewrite规则"><a href="#Rewrite规则" class="headerlink" title="Rewrite规则"></a>Rewrite规则</h3><p>Nginx Rewrite 规则相关指令有if,rewrite,set,return,break等，其中最关键的就是rewrite。一个简单的Nginx Rewrite规则语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rewrite ^/b/(.\*)\.html /play.php?video=$1 break;</div></pre></td></tr></table></figure></p>
-<p>正则表达式匹配，其中：</p>
-<ul>
-<li>~ 为区分大小写匹配；</li>
-<li>~* 为不区分大小写匹配；</li>
-<li>!~ 和 !~* 分别为区分大小写不匹配及不区分大小写不匹配。</li>
-</ul>
-<p>文件及目录匹配，其中：</p>
-<ul>
-<li>-f和!-f用来判断是否存在文件；</li>
-<li>-d和!-d用来判断是否存在目录；</li>
-<li>-e和!-e用来判断是否存在文件或目录；</li>
-<li>-x和!-x用来判断文件是否可执行。</li>
-</ul>
-<p>flag标记有：</p>
-<ul>
-<li>last 相当于Apache里的[L]标记，表示完成rewrite；</li>
-<li>break 终止匹配, 不再匹配后面的规则；</li>
-<li>redirect 返回302临时重定向 地址栏会显示跳转后的地址；</li>
-<li>permanent 返回301永久重定向 地址栏会显示跳转后的地址。</li>
-</ul>
-<p>当然除了这些以外，Rewrite规则中还会用到一些相应的全局变量，如$args，$url等等。</p>
-<h3 id="写自己的nginx配置文件"><a href="#写自己的nginx配置文件" class="headerlink" title="写自己的nginx配置文件"></a>写自己的nginx配置文件</h3><p>前面几节中我们已经学过了nginx配置文件中的各个段的配置指令，下面我们就来写一个自己配置文件。如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">worker_processes  1;</div><div class="line"></div><div class="line">events &#123;</div><div class="line">    worker_connections  1024;</div><div class="line">&#125;</div><div class="line"></div><div class="line">http &#123;</div><div class="line">    server &#123;</div><div class="line">        location / &#123;</div><div class="line">            #root   html;      #定义服务器的默认网站根目录位置</div><div class="line">            #index index.php index.html index.htm;   #定义首页索引文件的名称</div><div class="line">            proxy_pass http://www.hubwiz.com;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        error_page   500 502 503 504  /50x.html;</div><div class="line">        </div><div class="line">        location = /50x.html &#123;</div><div class="line">            root   html;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这样我们自己的配置文件就完成了，先将nginx的服务停止，然后我们用nginx -c <em>.conf命令来重新启动nginx，</em>.conf 为我们自己的配置文件所在的路径。</p>
-<h3 id="反向代理示例"><a href="#反向代理示例" class="headerlink" title="反向代理示例"></a>反向代理示例</h3><p>反向代理（Reverse Proxy）是指代理服务器来接收来自Internet上的连接请求，并将请求转发给内部网络上的服务器，并从服务器上得到的结果返回给Internet上请求连接的客户端。</p>
-<p>比如要配置后端跑 apache 服务的 ip 和端口，也就是说，我们的目标是实现通过 <a href="http://ip:port" target="_blank" rel="external">http://ip:port</a> 能访问到你的网站。配置文件可以修改以下内容，reload nginx就可以了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">## Basic reverse proxy server ##</div><div class="line">upstream apachephp  &#123;</div><div class="line">    server ip:8080; #Apache</div><div class="line">&#125;</div><div class="line"></div><div class="line">## Start www.nowamagic.net ##</div><div class="line">server &#123;</div><div class="line">    listen 80;</div><div class="line">    server_name  www.nowamagic.net;</div><div class="line">    access_log  logs/quancha.access.log  main;</div><div class="line">    error_log  logs/quancha.error.log;</div><div class="line">    root   html;</div><div class="line">    index  index.html index.htm index.php;</div><div class="line">    </div><div class="line">    ## send request back to apache ##</div><div class="line">    location / &#123;</div><div class="line">        proxy_pass  http://apachephp;</div><div class="line">        #……………………</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="虚拟主机示例"><a href="#虚拟主机示例" class="headerlink" title="虚拟主机示例"></a>虚拟主机示例</h3><p>Nginx做虚拟主机，尤其是仅仅支持纯静态-html，这是最简单的应用了，可以理解为一个仅支持静态页面的最简单的Web服务器。</p>
-<p>例子，同时支持两个虚拟主机（纯静态-html支持）的配置，我们只需要理改server段，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">listen       80;</div><div class="line">    server_name  www.hubwiz.com;</div><div class="line">    #charset koi8-r;</div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line">    </div><div class="line">    location / &#123;</div><div class="line">        root   /root; </div><div class="line">        index index.php index.html index.htm;  </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    error_page   500 502 503 504  /50x.html;</div><div class="line">    </div><div class="line">    location = /50x.html &#123;</div><div class="line">        root   html;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">server &#123;</div><div class="line">    listen       80;</div><div class="line">    server_name  www.baidu.com;</div><div class="line">    #charset koi8-r;</div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line">    </div><div class="line">    location / &#123;</div><div class="line">        root   /root;     </div><div class="line">        index index.php index.html index.htm; </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    error_page   500 502 503 504  /50x.html;</div><div class="line">    </div><div class="line">    location = /50x.html &#123;</div><div class="line">        root   html;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="正向代理示例"><a href="#正向代理示例" class="headerlink" title="正向代理示例"></a>正向代理示例</h3><p>nginx正向代理配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">server&#123;</div><div class="line">    listen       8080;</div><div class="line">    server_name www.hubwiz.com;</div><div class="line">    index index.html index.htm index.php;</div><div class="line">    root  /home/wwwroot;</div><div class="line">    </div><div class="line">    location / &#123;</div><div class="line">        resolver        192.168.8.88;</div><div class="line">        proxy_pass      $scheme://$http_host$request_uri;</div><div class="line">        proxy_buffers   256 4k;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    access_log off;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>以上配置的注意事项：</p>
-<ul>
-<li>不能有hostname。</li>
-<li>必须有resolver, 即dns，即上面的x.x.x.x，换成当前机器的DNS服务器ip即可(查看dns方法 cat /etc/resolv.conf 代理使用)。</li>
-<li>$http_host和$request_uri是nginx系统变量，保持原样即可。</li>
-</ul>
-<p>检测配置文件无误后，重启nginx，在浏览器中添加代理服务器的IP地址，就可以使用该Nginx正向代理了。</p>
-<h3 id="均衡负载示例"><a href="#均衡负载示例" class="headerlink" title="均衡负载示例"></a>均衡负载示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">upstream backend&#123;</div><div class="line">    #定义负载均衡设备的Ip及设备状态</div><div class="line">    server 127.0.0.1:9090 down; </div><div class="line">    server 192.168.1.12:8080 weight=2 ;</div><div class="line">    server 192.168.1.13:6060 max_fails=3 fail_timeout=30s;</div><div class="line">    server 1192.168.1.14:7070 backup;</div><div class="line">&#125;</div><div class="line"></div><div class="line">server&#123;</div><div class="line">    #…………………………</div><div class="line">    location /&#123;</div><div class="line">        proxy_pass http://backend;</div><div class="line">        #…………………………</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>以上代码就是对负载均衡应用的示例。</p>
-<p>Upstream可对后端服务器进行健康检查。</p>
-<ul>
-<li>down表示当前的server暂时不参与负载。</li>
-<li>weight默认为1.weight越大，负载的权重就越大。</li>
-<li>max_fails ：在fail_timeout时间内对后台服务器请求失败的次数。</li>
-<li>fail_timeout:max_fails次失败后，暂停的时间。</li>
-<li>backup： 其它所有的非backup机器down或者忙的时候，请求backup机器。所以这台机器压力会最轻。</li>
-</ul>
-<h3 id="rewrite简单示例"><a href="#rewrite简单示例" class="headerlink" title="rewrite简单示例"></a>rewrite简单示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">worker_processes  1;</div><div class="line"></div><div class="line">events &#123;</div><div class="line">    worker_connections  1024;</div><div class="line">&#125;</div><div class="line"></div><div class="line">http &#123;</div><div class="line">    server &#123;</div><div class="line">        location /hubwiz &#123;</div><div class="line">            rewrite (.*) http://www.hubwiz.com;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        location /baidu &#123;</div><div class="line">            rewrite (.*) http://www.baidu.com;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        error_page   500 502 503 504  /50x.html;</div><div class="line">        </div><div class="line">        location = /50x.html &#123;</div><div class="line">            root   html;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>按照前面讲的内容以及上面的代码，修改我们自己的配置文件，保存，重新加载nginx。</p>
-
           
+参考：Nginx入门-汇智网
+
+nginx概述及常用命令概述Nginx (“engine x”)是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP 代理服务器。Nginx是由Igor Sysoev为俄罗斯访问量第二的Rambler.ru站点开发的，第一个公开版本0.1.0
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/13/nginx基础/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -627,125 +499,21 @@
       
         
           
-            <blockquote>
-<p>参考：<a href="https://www.amazon.cn/%E5%9B%BE%E4%B9%A6/dp/B00BQ7RMW0/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1499870567&amp;sr=1-1&amp;keywords=%E7%BC%96%E5%86%99%E5%8F%AF%E7%BB%B4%E6%8A%A4%E7%9A%84javascript" target="_blank" rel="external">编写可维护的JavaScript</a></p>
-</blockquote>
-<h3 id="基本规范"><a href="#基本规范" class="headerlink" title="基本规范"></a>基本规范</h3><ul>
-<li>使用递归方式，一定要有结束条件，如果结束条件不确定，要有调用次数</li>
-<li><p>每一层级4个空格缩进，禁止使用制表符缩进（可以设置webstorm tab键为四个空格）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (someCondition) &#123;</div><div class="line">    doSomething();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>每行的长度尽量不超过120个字符（webstorm代码编辑页面中间有一条线，以那条线为准），如果超过应当在一个运算符（逗号、加号、逻辑运算符等）后换行，下一行应当相对增加一级缩进（4个空格）（还是两级？8个空格？）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">一级缩进：</div><div class="line"></div><div class="line">doSomething(argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10,</div><div class="line">    argument11)</div><div class="line">    </div><div class="line">两级缩进：</div><div class="line"></div><div class="line">doSomething(argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10,</div><div class="line">        argument11)</div></pre></td></tr></table></figure>
-</li>
-<li><p>初始化变量时字符串应当始终使用双引号，避免使用单引号，避免使用undefined，可以使用null</p>
-</li>
-<li><p>函数内用var声明变量时一定要在函数开始的地方，避免在if、for等语句块内声明，因为JavaScript的变量声明会提前。最好在函数的第一句使用一个var声明变量，一个变量一行，添加相应缩进并添加相应注释。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function doSomething(items) &#123;</div><div class="line">    var i,  // for循环变量</div><div class="line">        length,</div><div class="line">        value = 10,</div><div class="line">        result = value + 10;</div><div class="line">    </div><div class="line">    for (i = 0, length = items.length; i &lt; length; i++) &#123;</div><div class="line">        xxx;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>语句末尾一定加分号</p>
-</li>
-<li><p>给变量赋值时如果右侧是含有比较语句的表达式，需要用圆括号包裹</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var flag = (i &lt; count);</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用===、!== ，避免使用==和!=</p>
-</li>
-<li>if语句可以进行相应的简化（特殊情况特殊处理）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (count === 10) &#123;</div><div class="line">    success = true;</div><div class="line">&#125; else &#123;</div><div class="line">    success = false;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>可以简化为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">success = (count === 10);</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">if (hasClick === true) &#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line">if (hasClick === false) &#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>可以简化为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">if (hasClick) &#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line">if (!hasClick) &#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="间距"><a href="#间距" class="headerlink" title="间距"></a>间距</h3><ul>
-<li><p>运算符间距。二元运算符前后使用一个空格，包括赋值运算符、逻辑运算符等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var found = (values[i] === item);</div><div class="line"></div><div class="line">if (found &amp;&amp; (count &gt; 10)) &#123;</div><div class="line">    doSomething();</div><div class="line">&#125;</div><div class="line"></div><div class="line">for (i = 0; i &lt; count; i++) &#123;</div><div class="line">    process(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>括号间距。紧接左括号之后和紧接右括号之前不应该有空格</p>
-</li>
-<li>对象内间距:<ul>
-<li>每个属性名后紧跟冒号，不加空格，冒号后加一个空格然后写属性值</li>
-<li>对象内要有恰当的缩进</li>
-<li>一组相关的属性前后插入一个空行（不要多）</li>
-</ul>
-</li>
-<li>空行。在上下逻辑不相关的地方插入一个空行（有且只有一个空行，不要多）</li>
-</ul>
-<h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><ul>
-<li>驼峰式命名，首字母小写，后面单词首字符大写</li>
-<li>变量名一定要有含义，避免a, b, c, x, y这样的命名，for循环中的i, j, k等变量除外，但是要写好注释</li>
-</ul>
-<h4 id="常量命名"><a href="#常量命名" class="headerlink" title="常量命名"></a>常量命名</h4><ul>
-<li>全大写字母加下划线，下划线用来分隔单词</li>
-</ul>
-<h4 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h4><ul>
-<li>变量名的第一个单词应当是名词（而非动词）</li>
-<li>不要在变量命名中使用下划线</li>
-</ul>
-<h4 id="函数命名"><a href="#函数命名" class="headerlink" title="函数命名"></a>函数命名</h4><ul>
-<li>函数名的第一个单词应当是动词（而非名词）</li>
-<li>不要再函数命名中使用下划线</li>
-</ul>
-<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><blockquote>
-<p>不要写无意义的注释</p>
-</blockquote>
-<h4 id="变量-表达式注释"><a href="#变量-表达式注释" class="headerlink" title="变量/表达式注释"></a>变量/表达式注释</h4><ul>
-<li>在变量上方或后面用//进行单行注释，//后应当加一个空格</li>
-<li>如果在上方使用独立行注释，应当有适当的缩进，并且注释的上方应当有一个空行</li>
-<li>如果在后面进行注释，//前应有两个空格的缩进</li>
-</ul>
-<h4 id="方法注释-webstorm在写好的方法上方输入-然后回车"><a href="#方法注释-webstorm在写好的方法上方输入-然后回车" class="headerlink" title="方法注释(webstorm在写好的方法上方输入/**然后回车)"></a>方法注释(webstorm在写好的方法上方输入/**然后回车)</h4><ul>
-<li>说明方法的作用或意义或内容</li>
-<li>说明每个参数的类型（类型不确定可以进行相应说明）及含义</li>
-<li>如果有返回值说明返回内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 把源对象的属性扩展到目标对象</div><div class="line"> * @param &#123;Any&#125; target 参数</div><div class="line"> * @param &#123;Any*&#125; source 源对象。若有同名属性，则后者覆盖前者</div><div class="line"> * @return &#123;Any&#125; 目标对象</div><div class="line"> */</div><div class="line">function extend(target, source) &#123;</div><div class="line">    return xxx;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="注释声明"><a href="#注释声明" class="headerlink" title="注释声明"></a>注释声明</h4><ul>
-<li>TODO 说明代码还未完成，应当包含下一步要做的事情</li>
-<li>HACK 说明代码实现走了一个捷径，应当包含为何使用hack，也表明该问题可能会有更好的解决办法</li>
-<li>XXX  说明代码是有问题的并应尽快修复</li>
-<li>REVIEW 说明代码任何可能的修改都需要评审</li>
-</ul>
-<blockquote>
-<p>这些声明可以在单行注释或者多行注释中使用</p>
-</blockquote>
-<p>示例:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// TODO: 我希望有更好的方式</div><div class="line">doSOmething();</div><div class="line"></div><div class="line">/*</div><div class="line"> * HACK: 不得不针对IE做特殊处理，我计划后续有时间重写这部分，</div><div class="line"> * 这些代码可能需要在1.0.60版本之前替换掉。</div><div class="line"> */</div><div class="line">if (document.all) &#123;</div><div class="line">    doSomething();</div><div class="line">&#125;</div><div class="line"></div><div class="line">// REVIEW: 有更好的方法吗？</div><div class="line">if (document.all) &#123;</div><div class="line">    doSomething();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="js、css、html代码分离"><a href="#js、css、html代码分离" class="headerlink" title="js、css、html代码分离"></a>js、css、html代码分离</h3><ul>
-<li>避免在html写css样式</li>
-<li>尽量避免js中处理DOM，如果必要则必须写清楚注释并且把DOM操作部分独立出来，和逻辑处理分开</li>
-</ul>
-<h3 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h3><ul>
-<li>应用逻辑和事件处理程序独立</li>
-<li>事件处理程序进入应用逻辑之前可以对event进行必要的操作，比如阻止默认事件(event.preventDefault)或者冒泡事件(event.stopPropagation)等</li>
-</ul>
-<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><ul>
-<li><p>不要用null来比较判断是否空值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">错误代码：</div><div class="line">if (something === null) &#123;</div><div class="line">    xxx</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用typeof来判断基本类型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">用法： typeof 变量</div><div class="line">各个类型变量返回值:</div><div class="line">字符串： &quot;string&quot;</div><div class="line">数字： &quot;number&quot;</div><div class="line">布尔值： &quot;boolean&quot;</div><div class="line">null：  null(不是字符串)</div><div class="line">undefined： &quot;undefined&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>用instanceof检查引用值（日期Date，错误Error等）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">用法： value instanceof constructor</div><div class="line"></div><div class="line">// 检测日期</div><div class="line">if (value instanceof Date) &#123;</div><div class="line">    console.log(value.getFullYear());</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 检测正则表达式</div><div class="line">if (value instanceof RegExp) &#123;</div><div class="line">    console.log(value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p>不要用instanceof检测Object，因为所有引用值都是继承Object</p>
-</blockquote>
-<ul>
-<li><p>用Array.isArray(value)检测数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Array.isArray([1, 2, 3])</div></pre></td></tr></table></figure>
-</li>
-<li><p>使用in检测对象属性是否存在</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var object = &#123;</div><div class="line">    count: 0,</div><div class="line">    related: null</div><div class="line">&#125;</div><div class="line"></div><div class="line">if (&quot;count&quot; in object) &#123;</div><div class="line">    xxx</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="js逻辑相关"><a href="#js逻辑相关" class="headerlink" title="js逻辑相关"></a>js逻辑相关</h3><ul>
-<li>逻辑运算优化! <a href="https://zh.wikipedia.org/wiki/%E9%80%BB%E8%BE%91%E4%BB%A3%E6%95%B0" target="_blank" rel="external">https://zh.wikipedia.org/wiki/%E9%80%BB%E8%BE%91%E4%BB%A3%E6%95%B0</a></li>
-<li>避免看起来很混乱的逻辑判断，如果实在需要复杂的逻辑，一定写清楚注释</li>
-</ul>
-
           
+参考：编写可维护的JavaScript
+
+基本规范
+使用递归方式，一定要有结束条件，如果结束条件不确定，要有调用次数
+每一层级4个空格缩进，禁止使用制表符缩进（可以设置webstorm tab键为四个空格）
+123if (someCondition) &#123;    doSomething()
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/12/ES5基本规范/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -877,86 +645,19 @@
       
         
           
-            <blockquote>
-<p>参考链接：<a href="http://www.jianshu.com/p/ebfeb687eb70" target="_blank" rel="external">http://www.jianshu.com/p/ebfeb687eb70</a></p>
-</blockquote>
-<p>ECMAScript 6（以下简称ES6）是JavaScript语言的下一代标准。因为当前版本的ES6是在2015年发布的，所以又称ECMAScript 2015。<br>也就是说，ES6就是ES2015。</p>
-<p>虽然目前并不是所有浏览器都能兼容ES6全部特性，但越来越多的程序员在实际项目当中已经开始使用ES6了。所以就算你现在不打算使用ES6，但为了看懂别人的你也该懂点ES6的语法了…</p>
-<p>在我们正式讲解ES6语法之前，我们得先了解下<a href="https://babeljs.io/" target="_blank" rel="external">Babel</a>。<a href="https://babeljs.io/" target="_blank" rel="external">Babel</a>是一个广泛使用的ES6转码器，可以将ES6代码转为ES5代码，从而在现有环境执行。大家可以选择自己习惯的工具来使用使用Babel，具体过程可直接在Babel官网查看。</p>
-<h2 id="最常用的ES6特性"><a href="#最常用的ES6特性" class="headerlink" title="最常用的ES6特性"></a>最常用的ES6特性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let, const, class, extends, super, arrow functions, template string, destructuring, default, rest arguments</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这些是ES6最常用的几个语法，基本上学会它们，我们就可以走遍天下都不怕啦！我会用最通俗易懂的语言和例子来讲解它们，保证一看就懂，一学就会。</p>
-</blockquote>
-<h3 id="let-const"><a href="#let-const" class="headerlink" title="let, const"></a>let, const</h3><p>这两个的用途与var类似，都是用来声明变量的，但在实际运用中他俩都有各自的特殊用途。<br>首先来看下面这个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var name = &apos;zach&apos;</div><div class="line"></div><div class="line">while (true) &#123;</div><div class="line">    var name = &apos;obama&apos;</div><div class="line">    console.log(name)  //obama</div><div class="line">    break</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(name)  //obama</div></pre></td></tr></table></figure>
-<p>使用var两次输出都是obama，这是因为ES5只有全局作用域和函数作用域，没有块级作用域，这带来很多不合理的场景。第一种场景就是你现在看到的内层变量覆盖外层变量。而let则实际上为JavaScript新增了块级作用域。用它所声明的变量，只在let命令所在的代码块内有效。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">let name = &apos;zach&apos;</div><div class="line"></div><div class="line">while (true) &#123;</div><div class="line">    let name = &apos;obama&apos;</div><div class="line">    console.log(name)  //obama</div><div class="line">    break</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(name)  //zach</div></pre></td></tr></table></figure>
-<p>另外一个var带来的不合理场景就是用来计数的循环变量泄露为全局变量，看下面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = [];</div><div class="line">for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">  a[i] = function () &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">a[6](); // 10</div></pre></td></tr></table></figure>
-<p>上面代码中，变量i是var声明的，在全局范围内都有效。所以每一次循环，新的i值都会覆盖旧值，导致最后输出的是最后一轮的i的值。而使用let则不会出现这个问题。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = [];</div><div class="line">for (let i = 0; i &lt; 10; i++) &#123;</div><div class="line">  a[i] = function () &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line">a[6](); // 6</div></pre></td></tr></table></figure>
-<p>再来看一个更常见的例子，了解下如果不用ES6，而用闭包如何解决这个问题。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var clickBoxs = document.querySelectorAll(&apos;.clickBox&apos;)</div><div class="line">for (var i = 0; i &lt; clickBoxs.length; i++)&#123;</div><div class="line">    clickBoxs[i].onclick = function()&#123;</div><div class="line">        console.log(i)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们本来希望的是点击不同的clickBox，显示不同的i，但事实是无论我们点击哪个clickBox，输出的都是5。下面我们来看下，如何用闭包搞定它。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function iteratorFactory(i)&#123;</div><div class="line">    var onclick = function(e)&#123;</div><div class="line">        console.log(i)</div><div class="line">    &#125;</div><div class="line">    return onclick;</div><div class="line">&#125;</div><div class="line">var clickBoxs = document.querySelectorAll(&apos;.clickBox&apos;)</div><div class="line">for (var i = 0; i &lt; clickBoxs.length; i++)&#123;</div><div class="line">    clickBoxs[i].onclick = iteratorFactory(i)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>const也用来声明变量，但是声明的是常量。一旦声明，常量的值就不能改变。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const PI = Math.PI</div><div class="line">PI = 23 //Module build failed: SyntaxError: /es6/app.js: &quot;PI&quot; is read-only</div></pre></td></tr></table></figure>
-<p>当我们尝试去改变用const声明的常量时，浏览器就会报错。<br>const有一个很好的应用场景，就是当我们引用第三方库的时声明的变量，用const来声明可以避免未来不小心重命名而导致出现bug：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const monent = require(&apos;moment&apos;)</div></pre></td></tr></table></figure>
-<h3 id="class-extends-super"><a href="#class-extends-super" class="headerlink" title="class, extends, super"></a>class, extends, super</h3><p>这三个特性涉及了ES5中最令人头疼的的几个部分：原型、构造函数，继承…你还在为它们复杂难懂的语法而烦恼吗？你还在为指针到底指向哪里而纠结万分吗？</p>
-<p>有了ES6我们不再烦恼！</p>
-<p>ES6提供了更接近传统语言的写法，引入了Class（类）这个概念。新的class写法让对象原型的写法更加清晰、更像面向对象编程的语法，也更加通俗易懂。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">class Animal &#123;</div><div class="line">    constructor()&#123;</div><div class="line">        this.type = &apos;animal&apos;</div><div class="line">    &#125;</div><div class="line">    says(say)&#123;</div><div class="line">        console.log(this.type + &apos; says &apos; + say)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let animal = new Animal()</div><div class="line">animal.says(&apos;hello&apos;) //animal says hello</div><div class="line"></div><div class="line">class Cat extends Animal &#123;</div><div class="line">    constructor()&#123;</div><div class="line">        super()</div><div class="line">        this.type = &apos;cat&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let cat = new Cat()</div><div class="line">cat.says(&apos;hello&apos;) //cat says hello</div></pre></td></tr></table></figure>
-<p>上面代码首先用class定义了一个“类”，可以看到里面有一个constructor方法，这就是构造方法，而this关键字则代表实例对象。简单地说，constructor内定义的方法和属性是实例对象自己的，而constructor外定义的方法和属性则是所有实力对象可以共享的。</p>
-<p>Class之间可以通过extends关键字实现继承，这比ES5的通过修改原型链实现继承，要清晰和方便很多。上面定义了一个Cat类，该类通过extends关键字，继承了Animal类的所有属性和方法。</p>
-<p>super关键字，它指代父类的实例（即父类的this对象）。子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。</p>
-<p>ES6的继承机制，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。</p>
-<blockquote>
-<p> 如果你写react的话，就会发现以上三个东西在最新版React中出现得很多。创建的每个component都是一个继承React.Component的类。<a href="https://facebook.github.io/react/docs/components-and-props.html" target="_blank" rel="external">详见react文档</a>。</p>
-</blockquote>
-<h3 id="arrow-function"><a href="#arrow-function" class="headerlink" title="arrow function"></a>arrow function</h3><p>这个恐怕是ES6最最常用的一个新特性了，用它来写function比原来的写法要简洁清晰很多:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">function(i)&#123; return i + 1; &#125; //ES5</div><div class="line">(i) =&gt; i + 1 //ES6</div></pre></td></tr></table></figure>
-<p>简直是简单的不像话对吧…</p>
-<p>如果方程比较复杂，则需要用{}把代码包起来：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function(x, y) &#123; </div><div class="line">    x++;</div><div class="line">    y--;</div><div class="line">    return x + y;</div><div class="line">&#125;</div><div class="line">(x, y) =&gt; &#123;x++; y--; return x+y&#125;</div></pre></td></tr></table></figure>
-<p>除了看上去更简洁以外，arrow function还有一项超级无敌的功能！</p>
-<p>长期以来，JavaScript语言的this对象一直是一个令人头痛的问题，在对象方法中使用this，必须非常小心。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class Animal &#123;</div><div class="line">    constructor()&#123;</div><div class="line">        this.type = &apos;animal&apos;</div><div class="line">    &#125;</div><div class="line">    says(say)&#123;</div><div class="line">        setTimeout(function()&#123;</div><div class="line">            console.log(this.type + &apos; says &apos; + say)</div><div class="line">        &#125;, 1000)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"> var animal = new Animal()</div><div class="line"> animal.says(&apos;hi&apos;)  //undefined says hi</div></pre></td></tr></table></figure>
-<p>运行上面的代码会报错，这是因为setTimeout中的this指向的是全局对象。所以为了让它能够正确的运行，传统的解决方法有两种：</p>
-<ol>
-<li><p>第一种是将this传给self,再用self来指代this</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">says(say)&#123;</div><div class="line">    var self = this;</div><div class="line">    setTimeout(function()&#123;</div><div class="line">        console.log(self.type + &apos; says &apos; + say)</div><div class="line">&#125;, 1000)</div></pre></td></tr></table></figure>
-</li>
-<li><p>第二种方法是用bind(this),即</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">says(say)&#123;</div><div class="line">    setTimeout(function()&#123;</div><div class="line">        console.log(self.type + &apos; says &apos; + say)</div><div class="line">    &#125;.bind(this), 1000)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>但现在我们有了箭头函数，就不需要这么麻烦了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Animal &#123;</div><div class="line">    constructor()&#123;</div><div class="line">        this.type = &apos;animal&apos;</div><div class="line">    &#125;</div><div class="line">    says(say)&#123;</div><div class="line">        setTimeout( () =&gt; &#123;</div><div class="line">            console.log(this.type + &apos; says &apos; + say)</div><div class="line">        &#125;, 1000)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> var animal = new Animal()</div><div class="line"> animal.says(&apos;hi&apos;)  //animal says hi</div></pre></td></tr></table></figure>
-<p>当我们使用箭头函数时，函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
-<p>并不是因为箭头函数内部有绑定this的机制，实际原因是箭头函数根本没有自己的this，它的this是继承外面的，因此内部的this就是外层代码块的this。</p>
-<h3 id="template-string"><a href="#template-string" class="headerlink" title="template string"></a>template string</h3><p>这个东西也是非常有用，当我们要插入大段的html内容到文档中时，传统的写法非常麻烦，所以之前我们通常会引用一些模板工具库，比如mustache等等。<br>大家可以先看下面一段代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(&quot;#result&quot;).append(</div><div class="line">  &quot;There are &lt;b&gt;&quot; + basket.count + &quot;&lt;/b&gt; &quot; +</div><div class="line">  &quot;items in your basket, &quot; +</div><div class="line">  &quot;&lt;em&gt;&quot; + basket.onSale +</div><div class="line">  &quot;&lt;/em&gt; are on sale!&quot;</div><div class="line">);</div></pre></td></tr></table></figure>
-<p>我们要用一堆的’+’号来连接文本与变量，而使用ES6的新特性模板字符串``后，我们可以直接这么来写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(&quot;#result&quot;).append(`</div><div class="line">  There are &lt;b&gt;$&#123;basket.count&#125;&lt;/b&gt; items</div><div class="line">   in your basket, &lt;em&gt;$&#123;basket.onSale&#125;&lt;/em&gt;</div><div class="line">  are on sale!</div><div class="line">`);</div></pre></td></tr></table></figure>
-<p>用反引号（`）来标识起始，用${}来引用变量，而且所有的空格和缩进都会被保留在输出之中，是不是非常爽？！</p>
-<p>React Router从第1.0.3版开始也使用ES6语法了，比如这个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Link to=&#123;`/taco/$&#123;taco.name&#125;`&#125;&gt;&#123;taco.name&#125;&lt;/Link&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="destructuring"><a href="#destructuring" class="headerlink" title="destructuring"></a>destructuring</h3><p>ES6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。<br>看下面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let cat = &apos;ken&apos;</div><div class="line">let dog = &apos;lili&apos;</div><div class="line">let zoo = &#123;cat: cat, dog: dog&#125;</div><div class="line">console.log(zoo)  //Object &#123;cat: &quot;ken&quot;, dog: &quot;lili&quot;&#125;</div></pre></td></tr></table></figure>
-<p>用ES6完全可以像下面这么写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let cat = &apos;ken&apos;</div><div class="line">let dog = &apos;lili&apos;</div><div class="line">let zoo = &#123;cat, dog&#125;</div><div class="line">console.log(zoo)  //Object &#123;cat: &quot;ken&quot;, dog: &quot;lili&quot;&#125;</div></pre></td></tr></table></figure>
-<p>反过来可以这么写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let dog = &#123;type: &apos;animal&apos;, many: 2&#125;</div><div class="line">let &#123; type, many&#125; = dog</div><div class="line">console.log(type, many)   //animal 2</div></pre></td></tr></table></figure>
-<h3 id="default-rest"><a href="#default-rest" class="headerlink" title="default, rest"></a>default, rest</h3><p>default很简单，意思就是默认值。大家可以看下面的例子，调用animal()方法时忘了传参数，传统的做法就是加上这一句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">type = type || &apos;cat&apos;</div></pre></td></tr></table></figure></p>
-<p>来指定默认值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function animal(type)&#123;</div><div class="line">    type = type || &apos;cat&apos;  </div><div class="line">    console.log(type)</div><div class="line">&#125;</div><div class="line">animal()</div></pre></td></tr></table></figure>
-<p>如果用ES6我们而已直接这么写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function animal(type = &apos;cat&apos;)&#123;</div><div class="line">    console.log(type)</div><div class="line">&#125;</div><div class="line">animal()</div></pre></td></tr></table></figure>
-<p>最后一个rest语法也很简单，直接看例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function animals(...types)&#123;</div><div class="line">    console.log(types)</div><div class="line">&#125;</div><div class="line">animals(&apos;cat&apos;, &apos;dog&apos;, &apos;fish&apos;) //[&quot;cat&quot;, &quot;dog&quot;, &quot;fish&quot;]</div></pre></td></tr></table></figure>
-<p>而如果不用ES6的话，我们则得使用ES5的arguments。</p>
-
           
+参考链接：http://www.jianshu.com/p/ebfeb687eb70
+
+ECMAScript 6（以下简称ES6）是JavaScript语言的下一代标准。因为当前版本的ES6是在2015年发布的，所以又称ECMAScript 2015。也就是说，ES6就是ES2015。
+虽然目前并
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/11/ES6新特性简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
