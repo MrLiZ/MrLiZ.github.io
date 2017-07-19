@@ -1,0 +1,830 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="前端,移动,ionic,代码压缩混淆," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="参考：http://www.bijishequ.com/detail/219770?p=54-70  ionic工程发布时，有的工程由于代码量比较大，所以需要对js代码进行合并、压缩，而有的为了安全还需要代码混淆。本文参考上面的参考链接，进行了相应的调整，采用更适合自己项目的方法来进行代码合并、压缩和混淆。 文中的ionic项目目录结构如下：  其中html和js文件都在scripts目录下，并">
+<meta name="keywords" content="前端,移动,ionic,代码压缩混淆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ionic代码压缩混淆">
+<meta property="og:url" content="https://mrliz.github.io/2017/07/19/ionic代码压缩混淆/index.html">
+<meta property="og:site_name" content="MrLiZ">
+<meta property="og:description" content="参考：http://www.bijishequ.com/detail/219770?p=54-70  ionic工程发布时，有的工程由于代码量比较大，所以需要对js代码进行合并、压缩，而有的为了安全还需要代码混淆。本文参考上面的参考链接，进行了相应的调整，采用更适合自己项目的方法来进行代码合并、压缩和混淆。 文中的ionic项目目录结构如下：  其中html和js文件都在scripts目录下，并">
+<meta property="og:image" content="http://chuantu.biz/t5/141/1500382974x3031002306.png">
+<meta property="og:updated_time" content="2017-07-19T12:25:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ionic代码压缩混淆">
+<meta name="twitter:description" content="参考：http://www.bijishequ.com/detail/219770?p=54-70  ionic工程发布时，有的工程由于代码量比较大，所以需要对js代码进行合并、压缩，而有的为了安全还需要代码混淆。本文参考上面的参考链接，进行了相应的调整，采用更适合自己项目的方法来进行代码合并、压缩和混淆。 文中的ionic项目目录结构如下：  其中html和js文件都在scripts目录下，并">
+<meta name="twitter:image" content="http://chuantu.biz/t5/141/1500382974x3031002306.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mrliz.github.io/2017/07/19/ionic代码压缩混淆/"/>
+
+
+
+
+
+  <title>ionic代码压缩混淆 | MrLiZ</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MrLiZ</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better myself!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://mrliz.github.io/2017/07/19/ionic代码压缩混淆/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MrLiZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MrLiZ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ionic代码压缩混淆</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T18:41:12+08:00">
+                2017-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端-移动-ionic/" itemprop="url" rel="index">
+                    <span itemprop="name">前端-移动-ionic</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>参考：<a href="http://www.bijishequ.com/detail/219770?p=54-70" target="_blank" rel="external">http://www.bijishequ.com/detail/219770?p=54-70</a></p>
+</blockquote>
+<p>ionic工程发布时，有的工程由于代码量比较大，所以需要对js代码进行合并、压缩，而有的为了安全还需要代码混淆。本文参考上面的参考链接，进行了相应的调整，采用更适合自己项目的方法来进行代码合并、压缩和混淆。</p>
+<p>文中的ionic项目目录结构如下：</p>
+<p><img src="http://chuantu.biz/t5/141/1500382974x3031002306.png" alt="image"></p>
+<p>其中html和js文件都在scripts目录下，并且同一功能的js和html在同一目录下</p>
+<blockquote>
+<p>本文基于ionic 1.<em> 以及 angular 1.</em></p>
+</blockquote>
+<h2 id="将html页面转换为angular的JS代码"><a href="#将html页面转换为angular的JS代码" class="headerlink" title="将html页面转换为angular的JS代码"></a>将html页面转换为angular的JS代码</h2><p>这一步对html页面代码的混淆是将html页面代码处理成angular的js代码（保存到一个js文件中）。</p>
+<h3 id="安装gulp-angular-templatecache"><a href="#安装gulp-angular-templatecache" class="headerlink" title="安装gulp-angular-templatecache"></a>安装<a href="https://www.npmjs.com/package/gulp-angular-templatecache" target="_blank" rel="external">gulp-angular-templatecache</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install gulp-angular-templatecache --save-dev</div></pre></td></tr></table></figure>
+<h3 id="修改gulpfile-js文件"><a href="#修改gulpfile-js文件" class="headerlink" title="修改gulpfile.js文件"></a>修改gulpfile.js文件</h3><p>加入以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var templateCache = require(&apos;gulp-angular-templatecache&apos;);</div><div class="line"></div><div class="line">/**</div><div class="line"> * 把www/scripts目录下的所有html文件合并成js代码,由于直接合并时生成的路径需要带上scripts,</div><div class="line"> * 所以不直接取www/scripts目录,而是取www目录,再忽略除了scripts的其他目录</div><div class="line"> */</div><div class="line">gulp.task(&apos;templatecache&apos;, function(done)&#123;</div><div class="line">    gulp.src([&apos;./www/**/*.html&apos;, &apos;!./www/index.html&apos;, &apos;!./www/lib/**/*.html&apos;, &apos;!./www/assets/**/*.html&apos;])</div><div class="line">        .pipe(templateCache(&#123;standalone:true&#125;))</div><div class="line">        .pipe(gulp.dest(&apos;./www/scripts&apos;))</div><div class="line">        .on(&apos;end&apos;, done);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="在app-js中增加templates模块依赖"><a href="#在app-js中增加templates模块依赖" class="headerlink" title="在app.js中增加templates模块依赖"></a>在app.js中增加templates模块依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">angular.module(&apos;starter&apos;, [&apos;ionic&apos;,&apos;starter.controllers&apos;,&apos;templates&apos;])</div></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gulp templatecache</div></pre></td></tr></table></figure>
+<p>执行完毕后能在www/scripts目录下看到templates.js文件，可以打开看看是不是想要的结果。</p>
+<blockquote>
+<p>这时也可以在index.html中手动加入templates.js的引用，然后通过ionic serve就可以在浏览器测试一下效果</p>
+</blockquote>
+<h2 id="将www-scripts-templates-js引用加入到index-html"><a href="#将www-scripts-templates-js引用加入到index-html" class="headerlink" title="将www/scripts/templates.js引用加入到index.html"></a>将www/scripts/templates.js引用加入到index.html</h2><p>首先，执行完上一步后可以手动在index.hmtl中加入templates.js的引用，然后就可以通过<code>ionic serve</code>在浏览器看到效果。但是对于强迫症的我以及对于后面项目自动化打包来说，能自动是最好的。</p>
+<h3 id="安装gulp-inject"><a href="#安装gulp-inject" class="headerlink" title="安装gulp-inject"></a>安装<a href="https://www.npmjs.com/package/gulp-inject" target="_blank" rel="external">gulp-inject</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install gulp-inject --save-dev</div></pre></td></tr></table></figure>
+<h3 id="修改www-index-html文件"><a href="#修改www-index-html文件" class="headerlink" title="修改www/index.html文件"></a>修改www/index.html文件</h3><p>在index.html中引入项目www/scripts目录下的js的地方（index.hmtl中项目自己写的js引入、lib里面的js、ionic框架的js以及一些远程的js的引入是分开的）加入以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- inject:js --&gt;</div><div class="line">-&lt;!-- endinject --&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="修改gulpfile-js文件-1"><a href="#修改gulpfile-js文件-1" class="headerlink" title="修改gulpfile.js文件"></a>修改gulpfile.js文件</h3><p>加入以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var inject = require(&apos;gulp-inject&apos;);</div><div class="line"></div><div class="line">// 添加templates.js的引用到index.html</div><div class="line">gulp.task(&apos;inject-templates&apos;, function (done) &#123;</div><div class="line">    gulp.src(&apos;./www/index.html&apos;)</div><div class="line">        .pipe(inject(gulp.src(&apos;./www/scripts/templates.js&apos;, &#123;read: false&#125;), &#123;relative: true&#125;))</div><div class="line">        .pipe(gulp.dest(&apos;./www&apos;))</div><div class="line">        .on(&apos;end&apos;, done);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gulp templatecache</div></pre></td></tr></table></figure>
+<p>执行完后可以运行<code>ionic serve</code>测试</p>
+<h2 id="合并js及css文件"><a href="#合并js及css文件" class="headerlink" title="合并js及css文件"></a>合并js及css文件</h2><h3 id="安装gulp-useref"><a href="#安装gulp-useref" class="headerlink" title="安装gulp-useref"></a>安装gulp-useref</h3><blockquote>
+<p>这里安装2.1.0版本，可以看看最新版的差别然后进行相应的修改</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install gulp-useref@2.1.0 --save-dev</div></pre></td></tr></table></figure>
+<h3 id="修改gulpfile-js文件-2"><a href="#修改gulpfile-js文件-2" class="headerlink" title="修改gulpfile.js文件"></a>修改gulpfile.js文件</h3><p>加入以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var useref = require(&apos;gulp-useref&apos;);</div><div class="line"></div><div class="line">// 合并index.html中引用的需要合并的js文件</div><div class="line">gulp.task(&apos;useref&apos;, function(done)&#123;</div><div class="line">    var assets = useref.assets();</div><div class="line">    gulp.src(&apos;./www/index.html&apos;)</div><div class="line">        .pipe(assets)</div><div class="line">        .pipe(assets.restore())</div><div class="line">        .pipe(useref())</div><div class="line">        .pipe(gulp.dest(&apos;./www&apos;))</div><div class="line">        .on(&apos;end&apos;, done);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="修改www-index-html文件-1"><a href="#修改www-index-html文件-1" class="headerlink" title="修改www/index.html文件"></a>修改www/index.html文件</h3><blockquote>
+<p>注意：可能有些外部的css文件或js文件不想被处理，那么就保持原状即可。</p>
+</blockquote>
+<p>css文件处理(只列出部分文件)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- build:css css/lib.css --&gt;</div><div class="line">&lt;link href=&quot;lib/ion-datetime-picker/release/ion-datetime-picker.min.css&quot; rel=&quot;stylesheet&quot;&gt;</div><div class="line">&lt;link href=&quot;lib/font-awesome/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;&gt;</div><div class="line">&lt;!-- endbuild --&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>我的项目<code>lib/ionic/css/ionic.css</code>和<code>css/ionic.app.min.css</code>不属于处理范围</p>
+</blockquote>
+<p>lib js文件处理(只列出部分文件)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- build:js scripts/vendor.js --&gt;</div><div class="line">&lt;script src=&quot;lib/jquery/dist/jquery.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script src=&quot;lib/angulartics/dist/angulartics.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;!-- endbuild --&gt;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>我的项目<code>lib/ionic/js/ionic.bundle.js</code>和<code>cordova.js</code>不属于处理范围</p>
+</blockquote>
+<p>项目js 文件处理(只列出部分文件)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- build:js scripts/app.join.js --&gt;</div><div class="line">&lt;script src=&quot;scripts/app.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script src=&quot;scripts/constants.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;!-- endbuild --&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gulp useref</div></pre></td></tr></table></figure>
+<p>执行完后会生成以下文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">www/css/lib.css</div><div class="line">www/scripts/vendor.js</div><div class="line">www/scripts/app.join.js</div></pre></td></tr></table></figure></p>
+<p>同时index.html也会改变，引入文件的地方会变成新生成的文件的引入。</p>
+<p>然后通过<code>$ ionic serve</code>在浏览器测试</p>
+<h2 id="进行严格依赖注入"><a href="#进行严格依赖注入" class="headerlink" title="进行严格依赖注入"></a>进行严格依赖注入</h2><blockquote>
+<p>这里在代码合并之后才进行严格依赖注入，有两个原因：</p>
+<ul>
+<li>lib里面的库有的并不是很规范，所以需要先把lib合并再进行依赖注入，所以如果不需要合并lib，就可以不用先合并再进行依赖注入</li>
+<li>先合并文件，再进行依赖注入，这样只需要对合并后的一两个文件做操作，而不需要改变所有的js文件</li>
+</ul>
+</blockquote>
+<p>在进行代码压缩混淆之前，我们需要启用angular的ng-strict-di，即严格依赖注入，使得工程中依赖注入不会有问题，更多关于ng-strict-di可以看<a href="https://github.com/olov/ng-annotate#highly-recommended-enable-ng-strict-di-in-your-minified-builds" target="_blank" rel="external">这里</a>。</p>
+<h3 id="安装gulp-ng-annotate"><a href="#安装gulp-ng-annotate" class="headerlink" title="安装gulp-ng-annotate"></a>安装<a href="https://www.npmjs.com/package/gulp-ng-annotate" target="_blank" rel="external">gulp-ng-annotate</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install gulp-ng-annotate --save-dev</div></pre></td></tr></table></figure>
+<h3 id="修改gulpfile-js文件-3"><a href="#修改gulpfile-js文件-3" class="headerlink" title="修改gulpfile.js文件"></a>修改gulpfile.js文件</h3><p>加入以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var ngAnnotate = require(&apos;gulp-ng-annotate&apos;);</div><div class="line"></div><div class="line">// 严格依赖注入</div><div class="line">gulp.task(&apos;annotate&apos;, function () &#123;</div><div class="line">    return gulp.src([&apos;./www/scripts/*.js&apos;, &apos;./www/scripts/**/*.js&apos;])</div><div class="line">        .pipe(ngAnnotate(&#123;single_quotes:true&#125;))</div><div class="line">        .pipe(gulp.dest(&apos;./www/scripts&apos;));</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="测试-3"><a href="#测试-3" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gulp annotate</div></pre></td></tr></table></figure>
+<p>执行完后www/scripts下的js文件都会进行依赖注入调整</p>
+<h2 id="压缩混淆js代码"><a href="#压缩混淆js代码" class="headerlink" title="压缩混淆js代码"></a>压缩混淆js代码</h2><h3 id="安装gulp-uglify"><a href="#安装gulp-uglify" class="headerlink" title="安装gulp-uglify"></a>安装<a href="https://www.npmjs.com/package/gulp-uglify" target="_blank" rel="external">gulp-uglify</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install gulp-uglify --save-dev</div></pre></td></tr></table></figure>
+<h3 id="修改gulpfile-js文件-4"><a href="#修改gulpfile-js文件-4" class="headerlink" title="修改gulpfile.js文件"></a>修改gulpfile.js文件</h3><p>加入以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var uglify = require(&apos;gulp-uglify&apos;);</div><div class="line"></div><div class="line">// js代码压缩混淆</div><div class="line">gulp.task(&apos;js-uglify&apos;, function () &#123;</div><div class="line">    gulp.src(&apos;./www/scripts/vendor.js&apos;)</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(&apos;./www/scripts&apos;));</div><div class="line"></div><div class="line">    gulp.src(&apos;./www/scripts/app.join.js&apos;)</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(&apos;./www/scripts&apos;));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="测试-4"><a href="#测试-4" class="headerlink" title="测试"></a>测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gulp js-uglify</div></pre></td></tr></table></figure>
+<p>执行完后可以看到scripts目录下的vendor.js和app.join.js是压缩混淆后的代码，然后可以通过<code>$ ionic serve</code>在浏览器测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -- www/index.html &amp;&amp; gulp templatecache &amp;&amp; gulp inject-templates &amp;&amp; gulp useref &amp;&amp; gulp annotate &amp;&amp; gulp js-uglify</div></pre></td></tr></table></figure>
+<h2 id="利用hooks删除platforms里面的开发文件"><a href="#利用hooks删除platforms里面的开发文件" class="headerlink" title="利用hooks删除platforms里面的开发文件"></a>利用hooks删除platforms里面的开发文件</h2><h3 id="拷贝hooks文件020-remove-dev-files-from-platform-js"><a href="#拷贝hooks文件020-remove-dev-files-from-platform-js" class="headerlink" title="拷贝hooks文件020_remove_dev_files_from_platform.js"></a>拷贝hooks文件<a href="https://github.com/MrLiZ/ionic_auto_package/blob/master/020_remove_dev_files_from_platform.js" target="_blank" rel="external">020_remove_dev_files_from_platform.js</a></h3><p>将文件添加到./hooks/after_prepare文件夹中，将相关的文件夹目录改成自己需要的目录，然后给文件添加执行权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ chmod 755 hooks/after_prepare/020_remove_dev_files_from_platform.js</div></pre></td></tr></table></figure></p>
+<h3 id="测试-5"><a href="#测试-5" class="headerlink" title="测试"></a>测试</h3><p>可以运行以下命令测试：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ionic build android/ios --compress</div></pre></td></tr></table></figure></p>
+<p>执行完后相关目录下应该只会有压缩过后文件</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
+<li>相关的配置命令、打包命令以及打包完的git checkout等命令可以通过shell脚本来一次性处理</li>
+<li>不推荐在<code>$ ionic serve</code>时实时压缩混淆代码，一方面没有必要，另一方面开发的时候不压缩混淆会更方便调试</li>
+<li>不推荐在gulpfile里面将压缩混淆的命令用<code>$ gulp.task(&#39;compress&#39;, [&#39;templatecache&#39;, &#39;inject-templates&#39;, &#39;useref&#39;...]);</code>这种方式来执行，因为gulp执行的顺序可能不是你想要的</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="MrLiZ WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="MrLiZ Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/移动/" rel="tag"># 移动</a>
+          
+            <a href="/tags/ionic/" rel="tag"># ionic</a>
+          
+            <a href="/tags/代码压缩混淆/" rel="tag"># 代码压缩混淆</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/15/git学习笔记/" rel="next" title="git学习笔记">
+                <i class="fa fa-chevron-left"></i> git学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="MrLiZ" />
+          <p class="site-author-name" itemprop="name">MrLiZ</p>
+           
+              <p class="site-description motion-element" itemprop="description">rage your dream</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MrLiZ" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#将html页面转换为angular的JS代码"><span class="nav-number">1.</span> <span class="nav-text">将html页面转换为angular的JS代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gulp-angular-templatecache"><span class="nav-number">1.1.</span> <span class="nav-text">安装gulp-angular-templatecache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改gulpfile-js文件"><span class="nav-number">1.2.</span> <span class="nav-text">修改gulpfile.js文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在app-js中增加templates模块依赖"><span class="nav-number">1.3.</span> <span class="nav-text">在app.js中增加templates模块依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">1.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将www-scripts-templates-js引用加入到index-html"><span class="nav-number">2.</span> <span class="nav-text">将www/scripts/templates.js引用加入到index.html</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gulp-inject"><span class="nav-number">2.1.</span> <span class="nav-text">安装gulp-inject</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改www-index-html文件"><span class="nav-number">2.2.</span> <span class="nav-text">修改www/index.html文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改gulpfile-js文件-1"><span class="nav-number">2.3.</span> <span class="nav-text">修改gulpfile.js文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-1"><span class="nav-number">2.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并js及css文件"><span class="nav-number">3.</span> <span class="nav-text">合并js及css文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gulp-useref"><span class="nav-number">3.1.</span> <span class="nav-text">安装gulp-useref</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改gulpfile-js文件-2"><span class="nav-number">3.2.</span> <span class="nav-text">修改gulpfile.js文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改www-index-html文件-1"><span class="nav-number">3.3.</span> <span class="nav-text">修改www/index.html文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-2"><span class="nav-number">3.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进行严格依赖注入"><span class="nav-number">4.</span> <span class="nav-text">进行严格依赖注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gulp-ng-annotate"><span class="nav-number">4.1.</span> <span class="nav-text">安装gulp-ng-annotate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改gulpfile-js文件-3"><span class="nav-number">4.2.</span> <span class="nav-text">修改gulpfile.js文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-3"><span class="nav-number">4.3.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩混淆js代码"><span class="nav-number">5.</span> <span class="nav-text">压缩混淆js代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装gulp-uglify"><span class="nav-number">5.1.</span> <span class="nav-text">安装gulp-uglify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改gulpfile-js文件-4"><span class="nav-number">5.2.</span> <span class="nav-text">修改gulpfile.js文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-4"><span class="nav-number">5.3.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用hooks删除platforms里面的开发文件"><span class="nav-number">6.</span> <span class="nav-text">利用hooks删除platforms里面的开发文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝hooks文件020-remove-dev-files-from-platform-js"><span class="nav-number">6.1.</span> <span class="nav-text">拷贝hooks文件020_remove_dev_files_from_platform.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-5"><span class="nav-number">6.2.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MrLiZ</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
