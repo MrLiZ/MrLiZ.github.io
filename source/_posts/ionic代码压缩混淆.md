@@ -313,7 +313,7 @@ gulp.task('rm-dev-file', function () {
     var devJSDir = path.resolve(__dirname, "./www/scripts");
     // dev css
     var devCSSDir = path.resolve(__dirname, "./www/css");
-    // assets 报表文件目录
+    // assets 文件目录
     var assetsDir = path.resolve(__dirname, "./www/assets");
 
     deleteFolderRecursive(ionicDir, ["fonts"], ["ionic.min.css", "ionic.bundle.min.js"]);
