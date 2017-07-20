@@ -146,7 +146,7 @@ css文件处理(只列出部分文件)：
 <!-- endbuild -->
 ```
 
-> 我的项目`lib/ionic/css/ionic.css`和`css/ionic.app.min.css`不属于处理范围
+> 我的项目`lib/ionic/css/ionic.min.css`不属于处理范围
 
 lib js文件处理(只列出部分文件)：
 ```
@@ -156,7 +156,7 @@ lib js文件处理(只列出部分文件)：
 <!-- endbuild -->
 ```
 
-> 我的项目`lib/ionic/js/ionic.bundle.js`和`cordova.js`不属于处理范围
+> 我的项目`lib/ionic/js/ionic.bundle.min.js`和`cordova.js`不属于处理范围
 
 项目js 文件处理(只列出部分文件)：
 ```
@@ -305,19 +305,22 @@ gulp.task('rm-dev-file', function () {
         }
     };
 
-    // lib 下 ionic的sass文件
-    var ionicSassDir = path.resolve(__dirname, "./www/lib/ionic/scss");
+    // lib 下 ionic的文件目录
+    var ionicDir = path.resolve(__dirname, "./www/lib/ionic");
     // lib
     var libDir = path.resolve(__dirname, "./www/lib");
     // dev js
     var devJSDir = path.resolve(__dirname, "./www/scripts");
     // dev css
     var devCSSDir = path.resolve(__dirname, "./www/css");
+    // assets 报表文件目录
+    var assetsDir = path.resolve(__dirname, "./www/assets");
 
-    deleteFolderRecursive(ionicSassDir, [], []);
+    deleteFolderRecursive(ionicDir, ["fonts"], ["ionic.min.css", "ionic.bundle.min.js"]);
     deleteFolderRecursive(libDir, ["ionic"], []);
     deleteFolderRecursive(devJSDir, [], ["app.join.js", "vendor.js"]);
-    deleteFolderRecursive(devCSSDir, [], ["ionic.app.min.css", "lib.css", "mobiscroll.custom-2.17.0.min.css"]);
+    deleteFolderRecursive(devCSSDir, [], ["app.css"]);
+    deleteFolderRecursive(assetsDir, [], []);
 });
 ```
 然后运行`$ gulp rm-dev-file`测试
