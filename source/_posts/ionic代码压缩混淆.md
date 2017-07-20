@@ -289,10 +289,10 @@ gulp.task('rm-dev-file', function () {
                 // 如果是目录
                 if(fs.lstatSync(curPath).isDirectory()) {
                     // 如果不是排除在外的目录,递归调用,否则忽略
-                    excludePaths.indexOf(file) === -1 && deleteFolderRecursive(curPath);
+                    excludePaths.indexOf(file) === -1 && deleteFolderRecursive(curPath, excludePaths, excludeFiles);
                 } else {
                     // 如果是文件,并且不是排除在外的文件,删除文件,否则忽略
-                    excludeFiles.indexOf(file) === -1 && fs.unlinkSync(curPath);
+                    excludeFiles.indexOf(file) === -1 && fs.unlinkSync(curPath, excludePaths, excludeFiles);
                 }
             });
             try {
