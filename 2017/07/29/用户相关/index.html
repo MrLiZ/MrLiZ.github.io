@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="新建用户，配置可通过sudo使用root权限 添加用户  1adduser xxx  赋予root权限  方法一：修改 /etc/sudoers 文件，找到下面一行，把前面的注释（#）去掉12## Allows people in group wheel to run all commands%wheel  ALL=(ALL)   ALL     然后修改用户，使其属于root组（wheel），命">
+<meta name="description" content="新建用户，配置可通过sudo使用root权限 添加用户  1adduser xxx  赋予root权限  方法一：修改 /etc/sudoers 文件，找到下面一行，把前面的注释（#）去掉 12## Allows people in group wheel to run all commands%wheel  ALL=(ALL)   ALL 然后修改用户，使其属于root组（wheel），命令如下">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用户相关">
 <meta property="og:url" content="https://mrliz.github.io/2017/07/29/用户相关/index.html">
 <meta property="og:site_name" content="MrLiZ">
-<meta property="og:description" content="新建用户，配置可通过sudo使用root权限 添加用户  1adduser xxx  赋予root权限  方法一：修改 /etc/sudoers 文件，找到下面一行，把前面的注释（#）去掉12## Allows people in group wheel to run all commands%wheel  ALL=(ALL)   ALL     然后修改用户，使其属于root组（wheel），命">
-<meta property="og:updated_time" content="2017-07-30T15:07:22.000Z">
+<meta property="og:description" content="新建用户，配置可通过sudo使用root权限 添加用户  1adduser xxx  赋予root权限  方法一：修改 /etc/sudoers 文件，找到下面一行，把前面的注释（#）去掉 12## Allows people in group wheel to run all commands%wheel  ALL=(ALL)   ALL 然后修改用户，使其属于root组（wheel），命令如下">
+<meta property="og:updated_time" content="2017-07-30T15:11:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用户相关">
-<meta name="twitter:description" content="新建用户，配置可通过sudo使用root权限 添加用户  1adduser xxx  赋予root权限  方法一：修改 /etc/sudoers 文件，找到下面一行，把前面的注释（#）去掉12## Allows people in group wheel to run all commands%wheel  ALL=(ALL)   ALL     然后修改用户，使其属于root组（wheel），命">
+<meta name="twitter:description" content="新建用户，配置可通过sudo使用root权限 添加用户  1adduser xxx  赋予root权限  方法一：修改 /etc/sudoers 文件，找到下面一行，把前面的注释（#）去掉 12## Allows people in group wheel to run all commands%wheel  ALL=(ALL)   ALL 然后修改用户，使其属于root组（wheel），命令如下">
 
 
 
@@ -359,25 +359,20 @@
 <ul>
 <li><p>赋予root权限</p>
 <ul>
-<li>方法一：修改 <code>/etc/sudoers</code> 文件，找到下面一行，把前面的注释（#）去掉<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">## Allows people in group wheel to run all commands</div><div class="line">%wheel  ALL=(ALL)   ALL</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>然后修改用户，使其属于root组（wheel），命令如下：
-
+<li><p>方法一：修改 <code>/etc/sudoers</code> 文件，找到下面一行，把前面的注释（#）去掉</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">## Allows people in group wheel to run all commands</div><div class="line">%wheel  ALL=(ALL)   ALL</div></pre></td></tr></table></figure>
+<p>然后修改用户，使其属于root组（wheel），命令如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># usermod -g root tommy</div></pre></td></tr></table></figure>
-
-
-修改完毕，现在可以用tommy帐号登录，然后用命令 su - ，即可获得root权限进行操作。
-
-- 方法二：修改 `/etc/sudoers` 文件，找到下面一行，在root下面添加一行，如下所示：
-
+<p>修改完毕，现在可以用tommy帐号登录，然后用命令 su - ，即可获得root权限进行操作。</p>
+</li>
+<li><p>方法二：修改 <code>/etc/sudoers</code> 文件，找到下面一行，在root下面添加一行，如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">## Allow root to run any commands anywhere</div><div class="line">root    ALL=(ALL)   ALL</div><div class="line">tommy   ALL=(ALL)   ALL</div></pre></td></tr></table></figure>
-
-
-修改完毕，现在可以用tommy帐号登录，然后用命令 su - ，即可获得root权限进行操作。
-</code></pre><h3 id="将用户添加到另一个组"><a href="#将用户添加到另一个组" class="headerlink" title="将用户添加到另一个组"></a>将用户添加到另一个组</h3><p>将一个用户添加到用户组中，千万不能直接用：<code>usermod -G groupA</code></p>
+<p>修改完毕，现在可以用tommy帐号登录，然后用命令 su - ，即可获得root权限进行操作。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="将用户添加到另一个组"><a href="#将用户添加到另一个组" class="headerlink" title="将用户添加到另一个组"></a>将用户添加到另一个组</h3><p>将一个用户添加到用户组中，千万不能直接用：<code>usermod -G groupA</code></p>
 <p>这样做会使你离开其他用户组，仅仅做为 这个用户组 groupA 的成员。<br>应该用 加上 -a 选项： </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">usermod -a -G groupA user</div><div class="line">(FC4: usermod -G groupA,groupB,groupC user)</div></pre></td></tr></table></figure>
 <p>-a 代表 append， 也就是 将自己添加到 用户组groupA 中，而不必离开 其他用户组。 </p>
