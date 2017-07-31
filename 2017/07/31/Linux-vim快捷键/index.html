@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="Linux,vim," />
 
 
 
@@ -93,17 +93,19 @@
 
 
 
-<meta name="description" content="查看是否有固态硬盘1$ cat /sys/block/sda/queue/rotational 返回0为固态硬盘，返回1为普通硬盘">
-<meta name="keywords" content="Linux">
+<meta name="description" content="移动 h,j,k,l: 左，下，上，右。 w: 下一个词的词首。 e:下一个词的词尾。 b:上一个词的词首。 &amp;lt;&amp;gt;: v 模式选中后进行缩进。  跳转： %: 可以匹配{},””,(),[]之间跳转。 H、M、L：直接跳转到当前屏幕的顶部、中部、底部。 #H：跳转到当前屏的第#行。 #L：跳转到当前屏的倒数第#行。 zt: 当前编辑行置为屏顶。 zz: 当前编辑行置为屏中。 zb:">
+<meta name="keywords" content="Linux,vim">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux磁盘相关">
-<meta property="og:url" content="https://mrliz.github.io/2017/07/28/Linux磁盘相关/index.html">
+<meta property="og:title" content="Linux服务相关">
+<meta property="og:url" content="https://mrliz.github.io/2017/07/31/Linux-vim快捷键/index.html">
 <meta property="og:site_name" content="MrLiZ">
-<meta property="og:description" content="查看是否有固态硬盘1$ cat /sys/block/sda/queue/rotational 返回0为固态硬盘，返回1为普通硬盘">
-<meta property="og:updated_time" content="2017-07-30T15:27:23.000Z">
+<meta property="og:description" content="移动 h,j,k,l: 左，下，上，右。 w: 下一个词的词首。 e:下一个词的词尾。 b:上一个词的词首。 &amp;lt;&amp;gt;: v 模式选中后进行缩进。  跳转： %: 可以匹配{},””,(),[]之间跳转。 H、M、L：直接跳转到当前屏幕的顶部、中部、底部。 #H：跳转到当前屏的第#行。 #L：跳转到当前屏的倒数第#行。 zt: 当前编辑行置为屏顶。 zz: 当前编辑行置为屏中。 zb:">
+<meta property="og:image" content="http://chuantu.biz/t5/155/1501423160x1883298159.png">
+<meta property="og:updated_time" content="2017-07-31T13:08:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux磁盘相关">
-<meta name="twitter:description" content="查看是否有固态硬盘1$ cat /sys/block/sda/queue/rotational 返回0为固态硬盘，返回1为普通硬盘">
+<meta name="twitter:title" content="Linux服务相关">
+<meta name="twitter:description" content="移动 h,j,k,l: 左，下，上，右。 w: 下一个词的词首。 e:下一个词的词尾。 b:上一个词的词首。 &amp;lt;&amp;gt;: v 模式选中后进行缩进。  跳转： %: 可以匹配{},””,(),[]之间跳转。 H、M、L：直接跳转到当前屏幕的顶部、中部、底部。 #H：跳转到当前屏的第#行。 #L：跳转到当前屏的倒数第#行。 zt: 当前编辑行置为屏顶。 zz: 当前编辑行置为屏中。 zb:">
+<meta name="twitter:image" content="http://chuantu.biz/t5/155/1501423160x1883298159.png">
 
 
 
@@ -131,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://mrliz.github.io/2017/07/28/Linux磁盘相关/"/>
+  <link rel="canonical" href="https://mrliz.github.io/2017/07/31/Linux-vim快捷键/"/>
 
 
 
 
 
-  <title>Linux磁盘相关 | MrLiZ</title>
+  <title>Linux服务相关 | MrLiZ</title>
   
 
 
@@ -266,7 +268,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://mrliz.github.io/2017/07/28/Linux磁盘相关/">
+    <link itemprop="mainEntityOfPage" href="https://mrliz.github.io/2017/07/31/Linux-vim快捷键/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MrLiZ">
@@ -283,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux磁盘相关</h1>
+          <h1 class="post-title" itemprop="name headline">Linux服务相关</h1>
         
 
         <div class="post-meta">
@@ -295,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-28T21:30:30+08:00">
-                2017-07-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T21:37:23+08:00">
+                2017-07-31
               </time>
             
 
@@ -352,8 +354,138 @@
       
 
       
-        <h3 id="查看是否有固态硬盘"><a href="#查看是否有固态硬盘" class="headerlink" title="查看是否有固态硬盘"></a>查看是否有固态硬盘</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cat /sys/block/sda/queue/rotational</div></pre></td></tr></table></figure>
-<p>返回0为固态硬盘，返回1为普通硬盘</p>
+        <p><img src="http://chuantu.biz/t5/155/1501423160x1883298159.png" alt="image"></p>
+<h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><ul>
+<li><code>h,j,k,l</code>: 左，下，上，右。</li>
+<li><code>w</code>: 下一个词的词首。</li>
+<li><code>e</code>:下一个词的词尾。</li>
+<li><code>b</code>:上一个词的词首。</li>
+<li><code>&lt;&gt;</code>: v 模式选中后进行缩进。</li>
+</ul>
+<h3 id="跳转："><a href="#跳转：" class="headerlink" title="跳转："></a>跳转：</h3><ul>
+<li><code>%</code>: 可以匹配{},””,(),[]之间跳转。</li>
+<li><code>H、M、L</code>：直接跳转到当前屏幕的顶部、中部、底部。</li>
+<li><code>#H</code>：跳转到当前屏的第#行。</li>
+<li><code>#L</code>：跳转到当前屏的倒数第#行。</li>
+<li><code>zt</code>: 当前编辑行置为屏顶。</li>
+<li><code>zz</code>: 当前编辑行置为屏中。</li>
+<li><code>zb</code>: 当前编辑行置为屏底。</li>
+<li><code>G</code>：直接跳转到文件的底部。</li>
+<li><code>gg</code>: 跳转到文件首。</li>
+<li><code>()</code>:跳转到当前的行首、行尾。</li>
+<li><code>{}</code>：向上、向下跳转到最近的空行。</li>
+<li><code>[{</code>：跳转到目前区块开头。</li>
+<li><code>]}</code>：跳转到目前区块结尾。</li>
+<li><code>0</code>: 跳转到行首。</li>
+<li><code>$</code>: 跳转到行尾。</li>
+<li><code>2$</code>: 跳转到下一行的行尾。</li>
+<li><code>#</code>：跳转到该行的第#个位置。</li>
+<li><code>#G</code>: 15G,跳转到15行。</li>
+<li><code>:#</code>：跳转到#行。</li>
+<li><code>f&#39;n&#39;</code>：跳转到下一个”n”字母后。</li>
+<li><code>ctrl+b</code>: 向后翻一页。</li>
+<li><code>ctrl+f</code>：向前翻一页。</li>
+<li><code>ctrl+u</code>: 向后翻半页。</li>
+<li><code>ctrl+d</code>: 向前翻半页。</li>
+<li><code>ctry+e</code>: 下滚一行。</li>
+</ul>
+<h3 id="选择："><a href="#选择：" class="headerlink" title="选择："></a>选择：</h3><ul>
+<li><code>v</code>(小写)：进入选择模式</li>
+<li><code>V</code>(大写): 选择一行。</li>
+<li><code>v3w</code>: 选择三个字符。</li>
+</ul>
+<h3 id="编辑："><a href="#编辑：" class="headerlink" title="编辑："></a>编辑：</h3><ul>
+<li>新增：<ul>
+<li><code>i</code>: 光标前插入。</li>
+<li><code>I</code>: 在当前行首插入。</li>
+<li><code>a</code>: 光标后插入。</li>
+<li><code>A</code>: 当前行尾插入。</li>
+<li><code>O</code>: 在当前行之前插入新行。</li>
+<li><code>o</code>: 在当前行之后插入新行。</li>
+</ul>
+</li>
+<li>修改 c(change) 为主：<ul>
+<li><code>r</code>: 替换光标所在处的字符。</li>
+<li><code>R</code>：替换光标所到之处的字符。</li>
+<li><code>cw</code>: 更改光标所在处的字到字尾处。</li>
+<li><code>c#w</code>: c3w 修改3个字符。</li>
+<li><code>C</code>：修改到行尾。</li>
+<li><code>ci&#39;</code>：<code>ci(</code> <code>ci&quot;</code> 修改配对标点符号中的文本内容。</li>
+<li><code>di&#39;</code>：<code>di(</code> <code>di&quot;</code> 删除配对标点符号中的文本内容。</li>
+<li><code>yi&#39;</code>：<code>yi(</code> <code>yi&quot;</code> 复制配对标点符号中的文本内容。</li>
+<li><code>vi&#39;</code>：<code>vi(</code> <code>vi&quot;</code> 选中配对标点符号中的文本内容。</li>
+<li><code>s</code>：替换当前一个光标所处字符。</li>
+<li><code>#S</code>：删除 <code>#</code> 行，并以新文本代替。</li>
+</ul>
+</li>
+<li>删除 d(delete) 为主：<ul>
+<li><code>D</code>：删除到行尾。</li>
+<li><code>X</code>: 每按一次，删除光标所在位置的前面一个字符。</li>
+<li><code>x</code>: 每按一次，删除光标所在位置的后面一个字符。</li>
+<li><code>#x</code>: 删除光标所在位置后面6个字符。</li>
+<li><code>d^</code>: 删至行首。</li>
+<li><code>d$</code>: 删至行尾。</li>
+<li><code>dd</code>:(剪切)删除光标所在行。</li>
+<li><code>dw</code>: 删除一个单词/光标之后的单词剩余部分。</li>
+<li><code>d4w</code>: 删除4个word。</li>
+<li><code>#dd</code>: 从光标所在行开始删除#行。</li>
+<li><code>daB</code>: 删除{}及其内的内容。</li>
+<li><code>diB</code>: 删除{}中的内容。</li>
+<li><code>n1,n2 d</code>：将n1,n2行之间的内容删除。</li>
+</ul>
+</li>
+<li>查找：<ul>
+<li><code>/</code>： 输入关键字，发现不是要找的，直接在按n，向后查找直到找到为止。</li>
+<li><code>?</code>： 输入关键字，发现不是要找的，直接在按n，向前查找直到找到为止。</li>
+<li><code>*</code>: 在当前页向后查找同一字。</li>
+<li><code>#</code>: 在当前页向前查找同一字。</li>
+</ul>
+</li>
+<li>复制 y(yank)为主：<ul>
+<li><code>yw</code>: 将光标所在之处到字尾的字符复制到缓冲区中。</li>
+<li><code>#yw</code>: 复制#个字到缓冲区。</li>
+<li><code>Y</code>：相当于yy, 复制整行。</li>
+<li><code>#yy</code>:表示复制从光标所在的该行往下数#行文字。</li>
+<li><code>p</code>: 粘贴。所有与y相关的操作必用p来结合粘贴。</li>
+<li><code>n1,n2 co n3</code>：复制第n1行到第n2行之间的内容到第n3行后面。</li>
+</ul>
+</li>
+<li>大小写转换：<ul>
+<li><code>gUU</code>: 将当前行的字母改为大写。</li>
+<li><code>guu</code>: 将当前行的字母改为小写。</li>
+<li><code>gUw</code>: 将当前光标下的单词改为大写。</li>
+<li><code>guw</code>: 将当前光标下的单词改为小写。</li>
+<li><code>ggguG</code>：整篇小写<ul>
+<li><code>gg</code>: 光标到文件第一个字符。</li>
+<li><code>gu</code>: 把选择范围全部小写。</li>
+<li><code>G</code>: 到文件结束。</li>
+</ul>
+</li>
+<li><code>gggUG</code>：整篇大写</li>
+</ul>
+</li>
+<li>其它：<ul>
+<li><code>J</code>：当前行和下一行合并成一行。</li>
+</ul>
+</li>
+<li>移动：<ul>
+<li><code>n1,n2 m n3</code>：将n1行到n2行之间的内容移至n3行下。</li>
+</ul>
+</li>
+</ul>
+<h3 id="退出："><a href="#退出：" class="headerlink" title="退出："></a>退出：</h3><ol>
+<li><code>w filename</code>: 保存正在编辑的文件filename</li>
+<li><code>wq filename</code>: 保存后退出正在编辑的文件filename</li>
+<li><code>q</code>：退出不保存。</li>
+<li><code>q!</code>：强制不保存退出。</li>
+</ol>
+<h3 id="窗口操作："><a href="#窗口操作：" class="headerlink" title="窗口操作："></a>窗口操作：</h3><ol>
+<li>ctrl+w p: 在两个分割窗口之间来回切换。</li>
+<li>ctrl+w j: 跳到下面的分割窗</li>
+<li>ctrl+w h: 跳到左边的分割窗。</li>
+<li>ctrl+w k: 跳到上面的分割窗。</li>
+<li>ctrl+w l: 跳到右边的分割窗。</li>
+</ol>
 
       
     </div>
@@ -406,6 +538,8 @@
           
             <a href="/tags/Linux/" rel="tag"># Linux</a>
           
+            <a href="/tags/vim/" rel="tag"># vim</a>
+          
         </div>
       
 
@@ -417,8 +551,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/27/Linux服务相关/" rel="next" title="Linux服务相关">
-                <i class="fa fa-chevron-left"></i> Linux服务相关
+              <a href="/2017/07/30/ssh相关/" rel="next" title="ssh相关">
+                <i class="fa fa-chevron-left"></i> ssh相关
               </a>
             
           </div>
@@ -426,10 +560,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/28/Linux用户相关/" rel="prev" title="Linux用户相关">
-                Linux用户相关 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -569,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看是否有固态硬盘"><span class="nav-number">1.</span> <span class="nav-text">查看是否有固态硬盘</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#移动"><span class="nav-number">1.</span> <span class="nav-text">移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跳转："><span class="nav-number">2.</span> <span class="nav-text">跳转：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择："><span class="nav-number">3.</span> <span class="nav-text">选择：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑："><span class="nav-number">4.</span> <span class="nav-text">编辑：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出："><span class="nav-number">5.</span> <span class="nav-text">退出：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#窗口操作："><span class="nav-number">6.</span> <span class="nav-text">窗口操作：</span></a></li></ol></div>
             
 
           </div>
