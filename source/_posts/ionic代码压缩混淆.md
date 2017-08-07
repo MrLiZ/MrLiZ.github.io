@@ -270,7 +270,7 @@ gulp.task('image-min', function () {
             imagemin.optipng({optimizationLevel: 5}),
             imagemin.svgo({plugins: [{removeViewBox: true}]})
         ]))
-        .pipe(gulp.dest('./www/images'));
+        .pipe(gulp.dest('./www/img'));
 });
 ```
 
@@ -283,12 +283,6 @@ $ gulp image-min
 执行完后www目录下会生成images文件夹，里面是压缩过后的图片
 
 ## 利用hooks删除platforms里面的开发文件
-
-### 安装`mv`
-
-```
-$ npm install mv
-```
 
 ### 拷贝hooks文件[020_remove_dev_files_from_platform.js](https://github.com/MrLiZ/ionic_auto_package/blob/master/020_remove_dev_files_from_platform.js)
 将文件添加到./hooks/after_prepare文件夹中，将相关的文件夹目录改成自己需要的目录，然后给文件添加执行权限：
@@ -310,7 +304,6 @@ $ ionic build android/ios --compress
 ```
 var fs = require('fs');
 var path = require('path');
-var mv = require('mv');
 
 // 删除dev文件,热更新的时候才需要用到,先删除dev文件再进行热更新
 gulp.task('rm-dev-file', function () {
