@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="前端,html,css," />
+  <meta name="keywords" content="Linux,crontab," />
 
 
 
@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="html中显示所有空格html中默认不管多少空格都是只显示一个，不过添加以下css属性之后可以让所有空格都显示： 1white-space: pre !important; 修改placeholder颜色修改html输入框中placeholder的字体颜色可以通过以下样式： 123456789101112input::-webkit-input-placeholder &amp;#123; /* WebK">
-<meta name="keywords" content="前端,html,css">
+<meta name="description" content="crontab 是用来让使用者在固定时间或固定间隔执行程序之用。 使用说明基本命令123456crontab file [-u user] # 用指定的文件替代目前的crontab。crontab - [-u user] # 用标准输入替代目前的crontab。crontab -1 [user] # 列出用户目前的crontab。crontab -e [user] # 编辑用户目前的crontab">
+<meta name="keywords" content="Linux,crontab">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML+CSS常见问题">
-<meta property="og:url" content="https://mrliz.github.io/2017/07/25/HTML+CSS常见问题/index.html">
+<meta property="og:title" content="Linux Crontab">
+<meta property="og:url" content="https://mrliz.github.io/2017/07/27/Linux-crontab/index.html">
 <meta property="og:site_name" content="MrLiZ">
-<meta property="og:description" content="html中显示所有空格html中默认不管多少空格都是只显示一个，不过添加以下css属性之后可以让所有空格都显示： 1white-space: pre !important; 修改placeholder颜色修改html输入框中placeholder的字体颜色可以通过以下样式： 123456789101112input::-webkit-input-placeholder &amp;#123; /* WebK">
-<meta property="og:updated_time" content="2017-07-26T04:20:44.000Z">
+<meta property="og:description" content="crontab 是用来让使用者在固定时间或固定间隔执行程序之用。 使用说明基本命令123456crontab file [-u user] # 用指定的文件替代目前的crontab。crontab - [-u user] # 用标准输入替代目前的crontab。crontab -1 [user] # 列出用户目前的crontab。crontab -e [user] # 编辑用户目前的crontab">
+<meta property="og:updated_time" content="2017-08-14T12:01:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTML+CSS常见问题">
-<meta name="twitter:description" content="html中显示所有空格html中默认不管多少空格都是只显示一个，不过添加以下css属性之后可以让所有空格都显示： 1white-space: pre !important; 修改placeholder颜色修改html输入框中placeholder的字体颜色可以通过以下样式： 123456789101112input::-webkit-input-placeholder &amp;#123; /* WebK">
+<meta name="twitter:title" content="Linux Crontab">
+<meta name="twitter:description" content="crontab 是用来让使用者在固定时间或固定间隔执行程序之用。 使用说明基本命令123456crontab file [-u user] # 用指定的文件替代目前的crontab。crontab - [-u user] # 用标准输入替代目前的crontab。crontab -1 [user] # 列出用户目前的crontab。crontab -e [user] # 编辑用户目前的crontab">
 
 
 
@@ -131,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://mrliz.github.io/2017/07/25/HTML+CSS常见问题/"/>
+  <link rel="canonical" href="https://mrliz.github.io/2017/07/27/Linux-crontab/"/>
 
 
 
 
 
-  <title>HTML+CSS常见问题 | MrLiZ</title>
+  <title>Linux Crontab | MrLiZ</title>
   
 
 
@@ -266,7 +266,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://mrliz.github.io/2017/07/25/HTML+CSS常见问题/">
+    <link itemprop="mainEntityOfPage" href="https://mrliz.github.io/2017/07/27/Linux-crontab/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MrLiZ">
@@ -283,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HTML+CSS常见问题</h1>
+          <h1 class="post-title" itemprop="name headline">Linux Crontab</h1>
         
 
         <div class="post-meta">
@@ -295,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-25T13:18:38+08:00">
-                2017-07-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-27T22:30:00+08:00">
+                2017-07-27
               </time>
             
 
@@ -318,8 +318,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端-html-css/" itemprop="url" rel="index">
-                    <span itemprop="name">前端-html+css</span>
+                  <a href="/categories/Linux-Linux常用技巧/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux-Linux常用技巧</span>
                   </a>
                 </span>
 
@@ -352,10 +352,27 @@
       
 
       
-        <h3 id="html中显示所有空格"><a href="#html中显示所有空格" class="headerlink" title="html中显示所有空格"></a>html中显示所有空格</h3><p>html中默认不管多少空格都是只显示一个，不过添加以下css属性之后可以让所有空格都显示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">white-space: pre !important;</div></pre></td></tr></table></figure>
-<h3 id="修改placeholder颜色"><a href="#修改placeholder颜色" class="headerlink" title="修改placeholder颜色"></a>修改placeholder颜色</h3><p>修改html输入框中placeholder的字体颜色可以通过以下样式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">input::-webkit-input-placeholder &#123; /* WebKit browsers */</div><div class="line">  color: $color-font;</div><div class="line">&#125;</div><div class="line">input:-moz-placeholder &#123; /* Mozilla Firefox 4 to 18 */</div><div class="line">  color: $color-font;</div><div class="line">&#125;</div><div class="line">input::-moz-placeholder &#123; /* Mozilla Firefox 19+ */</div><div class="line">  color: $color-font;</div><div class="line">&#125;</div><div class="line">input:-ms-input-placeholder &#123; /* Internet Explorer 10+ */</div><div class="line">  color: $color-font;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p>crontab 是用来让使用者在固定时间或固定间隔执行程序之用。</p>
+<h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><h4 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">crontab file [-u user] # 用指定的文件替代目前的crontab。</div><div class="line">crontab - [-u user] # 用标准输入替代目前的crontab。</div><div class="line">crontab -1 [user] # 列出用户目前的crontab。</div><div class="line">crontab -e [user] # 编辑用户目前的crontab。</div><div class="line">crontab -d [user] # 删除用户目前的crontab。</div><div class="line">crontab -c dir # 指定crontab的目录。</div></pre></td></tr></table></figure>
+<h4 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式 :"></a>基本格式 :</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*　　*　　*　　*　　*　　command</div><div class="line">分　 时　 日　 月　 周　  命令</div></pre></td></tr></table></figure>
+<ul>
+<li>第1列表示分钟0～59 每分钟用<em>或者 </em>/1表示;</li>
+<li>第2列表示小时0～23（0表示0点）</li>
+<li>第3列表示日期1～31</li>
+<li>第4列表示月份1～12</li>
+<li>第5列标识号星期0～6（0表示星期天）</li>
+<li>第6列要运行的命令</li>
+</ul>
+<h3 id="crontab的一些例子"><a href="#crontab的一些例子" class="headerlink" title="crontab的一些例子"></a>crontab的一些例子</h3><p>每晚的21:30重启apache:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">30 21 * * * /usr/local/etc/rc.d/lighttpd restart</div></pre></td></tr></table></figure></p>
+<p>每月1、10、22日的4 : 45重启apache:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">45 4 1,10,22 * * /usr/local/etc/rc.d/lighttpd restart</div></pre></td></tr></table></figure></p>
+<p>每周六、周日的1 : 10重启apache:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">10 1 * * 6,0 /usr/local/etc/rc.d/lighttpd restart</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0,30 18-23 * * * /usr/local/etc/rc.d/lighttpd restart</div></pre></td></tr></table></figure>
+<p>每星期六的11 : 00 pm重启apache:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0 23 * * 6 /usr/local/etc/rc.d/lighttpd restart</div></pre></td></tr></table></figure></p>
+<p>每一小时重启apache</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* */1 * * * /usr/local/etc/rc.d/lighttpd restart</div></pre></td></tr></table></figure>
+<p>晚上11点到早上7点之间，每隔一小时重启apache<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* 23-7/1 * * * /usr/local/etc/rc.d/lighttpd restart</div></pre></td></tr></table></figure></p>
+<p>每月的4号与每周一到周三的11点重启apache<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0 11 4 * mon-wed /usr/local/etc/rc.d/lighttpd restart</div></pre></td></tr></table></figure></p>
+<p>一月一号的4点重启apache<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0 4 1 jan * /usr/local/etc/rc.d/lighttpd restart</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -406,11 +423,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/前端/" rel="tag"># 前端</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
-            <a href="/tags/html/" rel="tag"># html</a>
-          
-            <a href="/tags/css/" rel="tag"># css</a>
+            <a href="/tags/crontab/" rel="tag"># crontab</a>
           
         </div>
       
@@ -423,8 +438,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/24/SEO在网页制作中的应用/" rel="next" title="SEO在网页制作中的应用">
-                <i class="fa fa-chevron-left"></i> SEO在网页制作中的应用
+              <a href="/2017/07/25/HTML+CSS常见问题/" rel="next" title="HTML+CSS常见问题">
+                <i class="fa fa-chevron-left"></i> HTML+CSS常见问题
               </a>
             
           </div>
@@ -433,8 +448,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/27/Linux-crontab/" rel="prev" title="Linux Crontab">
-                Linux Crontab <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/27/Linux服务相关/" rel="prev" title="Linux服务相关">
+                Linux服务相关 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -575,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#html中显示所有空格"><span class="nav-number">1.</span> <span class="nav-text">html中显示所有空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改placeholder颜色"><span class="nav-number">2.</span> <span class="nav-text">修改placeholder颜色</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用说明"><span class="nav-number">1.</span> <span class="nav-text">使用说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本命令"><span class="nav-number">1.1.</span> <span class="nav-text">基本命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本格式"><span class="nav-number">1.2.</span> <span class="nav-text">基本格式 :</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#crontab的一些例子"><span class="nav-number">2.</span> <span class="nav-text">crontab的一些例子</span></a></li></ol></div>
             
 
           </div>
