@@ -1,0 +1,886 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux,screen," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="参考：http://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html  可能是最常用的screen命令 screen -S yourname : 新建一个叫yourname的session screen -ls : 列出当前所有的session screen -r yourname : 回到yourname这个session Ctrl">
+<meta name="keywords" content="Linux,screen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux Screen">
+<meta property="og:url" content="https://mrliz.github.io/2017/08/15/Linux-screen/index.html">
+<meta property="og:site_name" content="MrLiZ">
+<meta property="og:description" content="参考：http://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html  可能是最常用的screen命令 screen -S yourname : 新建一个叫yourname的session screen -ls : 列出当前所有的session screen -r yourname : 回到yourname这个session Ctrl">
+<meta property="og:image" content="http://chuantu.biz/t6/5/1502801226x2890202773.jpg">
+<meta property="og:image" content="http://chuantu.biz/t6/5/1502801313x3031002306.jpg">
+<meta property="og:image" content="http://chuantu.biz/t6/5/1502801405x3031002306.jpg">
+<meta property="og:image" content="http://chuantu.biz/t6/5/1502801468x3031002306.jpg">
+<meta property="og:image" content="http://chuantu.biz/t6/5/1502801836x3031002306.jpg">
+<meta property="og:image" content="http://chuantu.biz/t6/5/1502801957x3031002306.jpg">
+<meta property="og:updated_time" content="2017-08-15T13:02:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux Screen">
+<meta name="twitter:description" content="参考：http://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html  可能是最常用的screen命令 screen -S yourname : 新建一个叫yourname的session screen -ls : 列出当前所有的session screen -r yourname : 回到yourname这个session Ctrl">
+<meta name="twitter:image" content="http://chuantu.biz/t6/5/1502801226x2890202773.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mrliz.github.io/2017/08/15/Linux-screen/"/>
+
+
+
+
+
+  <title>Linux Screen | MrLiZ</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MrLiZ</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Better myself!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://mrliz.github.io/2017/08/15/Linux-screen/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MrLiZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MrLiZ">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux Screen</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T21:26:00+08:00">
+                2017-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux-Linux常用技巧/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux-Linux常用技巧</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>参考：<a href="http://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html" target="_blank" rel="external">http://www.cnblogs.com/mchina/archive/2013/01/30/2880680.html</a></p>
+</blockquote>
+<h2 id="可能是最常用的screen命令"><a href="#可能是最常用的screen命令" class="headerlink" title="可能是最常用的screen命令"></a>可能是最常用的screen命令</h2><ul>
+<li><code>screen -S yourname</code> : 新建一个叫yourname的session</li>
+<li><code>screen -ls</code> : 列出当前所有的session</li>
+<li><code>screen -r yourname</code> : 回到yourname这个session</li>
+<li><code>Ctrl +a +d</code> : 暂时离开当前session</li>
+<li><code>Ctrl +a +k</code>: 结束当前session</li>
+</ul>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>系统管理员经常需要SSH远程登录到Linux 服务器，经常运行一些需要很长时间才能完成的任务，比如系统备份、ftp 传输等等。通常情况下我们都是为每一个这样的任务开一个远程终端窗口，因为它们执行的时间太长了。必须等待它们执行完毕，在此期间不能关掉窗口或者断开连接，否则这个任务就会被杀掉，一切半途而废了。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>GNU Screen</strong>是一款由GNU计划开发的用于命令行终端切换的自由软件。用户可以通过该软件同时连接多个本地或远程的命令行会话，并在其间自由切换。</p>
+<p>GNU Screen可以看作是窗口管理器的命令行界面版本。它提供了统一的管理多个会话的界面和相应的功能。</p>
+<ul>
+<li><p>会话恢复</p>
+<p>  只要Screen本身没有终止，在其内部运行的会话都可以恢复。这一点对于远程登录的用户特别有用——即使网络连接中断，用户也不会失去对已经打开的命令行会话的控制。只要再次登录到主机上执行<code>screen -r</code>就可以恢复会话的运行。同样在暂时离开的时候，也可以执行分离命令<code>detach</code>，在保证里面的程序正常运行的情况下让Screen挂起（切换到后台）。这一点和图形界面下的VNC很相似。</p>
+</li>
+<li><p>多窗口</p>
+<p>  在Screen环境下，所有的会话都独立的运行，并拥有各自的编号、输入、输出和窗口缓存。用户可以通过快捷键在不同的窗口下切换，并可以自由的重定向各个窗口的输入和输出。Screen实现了基本的文本操作，如复制粘贴等；还提供了类似滚动条的功能，可以查看窗口状况的历史记录。窗口还可以被分区和命名，还可以监视后台窗口的活动。</p>
+</li>
+<li><p>会话共享</p>
+<p>  Screen可以让一个或多个用户从不同终端多次登录一个会话，并共享会话的所有特性（比如可以看到完全相同的输出）。它同时提供了窗口访问权限的机制，可以对窗口进行密码保护。</p>
+</li>
+</ul>
+<blockquote>
+<p><a href="http://www.gnu.org/software/screen/" target="_blank" rel="external">GNU’s Screen 官方站点</a></p>
+</blockquote>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ screen [-AmRvx -ls -wipe][-d &lt;作业名称&gt;][-h &lt;行数&gt;][-r &lt;作业名称&gt;][-s ][-S &lt;作业名称&gt;]</div></pre></td></tr></table></figure>
+<p><strong>参数说明：</strong></p>
+<ul>
+<li><code>-A</code> : 将所有的视窗都调整为目前终端机的大小。</li>
+<li><code>-d &lt;作业名称&gt;</code> : 将指定的screen作业离线。</li>
+<li><code>-h &lt;行数&gt;</code> : 指定视窗的缓冲区行数。</li>
+<li><code>-m</code> : 即使目前已在作业中的screen作业，仍强制建立新的screen作业。</li>
+<li><code>-r &lt;作业名称&gt;</code> : 恢复离线的screen作业。</li>
+<li><code>-R</code> : 先试图恢复离线的作业。若找不到离线的作业，即建立新的screen作业。</li>
+<li><code>-s</code> : 指定建立新视窗时，所要执行的shell。</li>
+<li><code>-S &lt;作业名称&gt;</code> : 指定screen作业的名称。</li>
+<li><code>-v</code> : 显示版本信息。</li>
+<li><code>-x</code> : 恢复之前离线的screen作业。</li>
+<li><code>-ls或--list</code> : 显示目前所有的screen作业。</li>
+<li><code>-wipe</code> : 检查目前所有的screen作业，并删除已经无法使用的screen作业。</li>
+</ul>
+<h2 id="常用screen参数"><a href="#常用screen参数" class="headerlink" title="常用screen参数"></a>常用screen参数</h2><ul>
+<li><code>screen -S yourname</code> : 新建一个叫yourname的session</li>
+<li><code>screen -ls</code> : 列出当前所有的session</li>
+<li><code>screen -r yourname</code> : 回到yourname这个session</li>
+<li><code>screen -d yourname</code> : 远程detach某个session</li>
+<li><code>screen -d -r yourname</code> : 结束当前session并回到yourname这个session</li>
+</ul>
+<p><strong>在每个screen session 下，所有命令都以 <code>ctrl+a(C-a)</code> 开始。</strong></p>
+<ul>
+<li><code>C-a ?</code> : 显示所有键绑定信息</li>
+<li><code>C-a c</code> : 创建一个新的运行shell的窗口并切换到该窗口</li>
+<li><code>C-a n</code> :  Next，切换到下一个 window</li>
+<li><code>C-a p</code> : Previous，切换到前一个 window</li>
+<li><code>C-a 0..9</code> : 切换到第 0..9 个 window</li>
+<li><code>Ctrl+a [Space]</code> : 由视窗0循序切换到视窗9</li>
+<li><code>C-a C-a</code> : 在两个最近使用的 window 间切换</li>
+<li><code>C-a x</code> : 锁住当前的 window，需用用户密码解锁</li>
+<li><code>C-a d</code> : detach，暂时离开当前session，将目前的 screen session (可能含有多个 windows) 丢到后台执行，并会回到还没进 screen 时的状态，此时在 screen session 里，每个 window 内运行的 process (无论是前台/后台)都在继续执行，即使 logout 也不影响。</li>
+<li><code>C-a z</code> : 把当前session放到后台执行，用 shell 的 fg 命令则可回去。</li>
+<li><code>C-a w</code> : 显示所有窗口列表</li>
+<li><code>C-a t</code> : Time，显示当前时间</li>
+<li><code>C-a k</code> : kill window，强行关闭当前的 window</li>
+<li><code>C-a [</code> : 进入 copy mode，在 copy mode 下可以回滚、搜索、复制就像用使用 vi 一样<ul>
+<li><code>C-b</code> : Backward，PageUp</li>
+<li><code>C-f</code> : Forward，PageDown</li>
+<li><code>H(大写)</code> : High，将光标移至左上角</li>
+<li><code>L</code> : Low，将光标移至左下角</li>
+<li><code>0</code> : 移到行首</li>
+<li><code>$</code> : 行末</li>
+<li><code>w</code> : forward one word，以字为单位往前移</li>
+<li><code>b</code> : backward one word，以字为单位往后移</li>
+<li><code>Space</code> : 第一次按为标记区起点，第二次按为终点</li>
+<li><code>Esc</code> : 结束 copy mode</li>
+</ul>
+</li>
+<li><code>C-a ]</code> :  Paste，把刚刚在 copy mode 选定的内容贴上</li>
+</ul>
+<h2 id="使用-screen"><a href="#使用-screen" class="headerlink" title="使用 screen"></a>使用 screen</h2><h3 id="安装screen"><a href="#安装screen" class="headerlink" title="安装screen"></a>安装screen</h3><p>流行的Linux发行版（例如Red Hat Enterprise Linux）通常会自带screen实用程序，如果没有的话，可以从GNU screen的官方网站下载。</p>
+<p>centos:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@TS-DEV ~]# yum install screen</div><div class="line">[root@TS-DEV ~]# rpm -qa | grep screen</div><div class="line">screen-4.0.3-4.el5</div><div class="line">[root@TS-DEV ~]#</div></pre></td></tr></table></figure>
+<p>ubuntu：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install screen</div></pre></td></tr></table></figure>
+<h3 id="创建一个新的窗口"><a href="#创建一个新的窗口" class="headerlink" title="创建一个新的窗口"></a>创建一个新的窗口</h3><p>安装完成后，直接敲命令screen就可以启动它。但是这样启动的screen会话没有名字，实践上推荐为每个screen会话取一个名字，方便分辨：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@TS-DEV ~]# screen -S david</div></pre></td></tr></table></figure>
+<p>screen启动后，会创建第一个窗口，也就是窗口No. 0，并在其中打开一个系统默认的shell，一般都会是bash。所以你敲入命令screen之后，会立刻又返回到命令提示符，仿佛什么也没有发生似的，其实你已经进入Screen的世界了。当然，也可以在screen命令之后加入你喜欢的参数，使之直接打开你指定的程序，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@TS-DEV ~]# screen vi david.txt</div></pre></td></tr></table></figure>
+<p>screen创建一个执行vi david.txt的单窗口会话，退出vi 将退出该窗口/会话。</p>
+<h3 id="查看窗口和窗口名称"><a href="#查看窗口和窗口名称" class="headerlink" title="查看窗口和窗口名称"></a>查看窗口和窗口名称</h3><p>打开多个窗口后，可以使用快捷键<code>C-a w</code>列出当前所有窗口。如果使用文本终端，这个列表会列在屏幕左下角，如果使用X环境下的终端模拟器，这个列表会列在标题栏里。窗口列表的样子一般是这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0$ bash  1-$ bash  2*$ bash</div></pre></td></tr></table></figure>
+<p>这个例子中我开启了三个窗口，其中*号表示当前位于窗口2，-号表示上一次切换窗口时位于窗口1。</p>
+<p>Screen默认会为窗口命名为编号和窗口中运行程序名的组合，上面的例子中窗口都是默认名字。练习了上面查看窗口的方法，你可能就希望各个窗口可以有不同的名字以方便区分了。可以使用快捷键<code>C-a A</code>来为当前窗口重命名，按下快捷键后，Screen会允许你为当前窗口输入新的名字，回车确认。</p>
+<h3 id="会话分离与恢复"><a href="#会话分离与恢复" class="headerlink" title="会话分离与恢复"></a>会话分离与恢复</h3><p>你可以不中断screen窗口中程序的运行而暂时断开（detach）screen会话，并在随后时间重新连接（attach）该会话，重新控制各窗口中运行的程序。例如，我们打开一个screen窗口编辑<code>/tmp/david.txt</code>文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@TS-DEV ~]# screen vi /tmp/david.txt</div></pre></td></tr></table></figure>
+<p>之后我们想暂时退出做点别的事情，比如出去散散步，那么在screen窗口键入<code>C-a d</code>，Screen会给出detached提示：</p>
+<p><strong>暂时中断会话</strong></p>
+<p><img src="http://chuantu.biz/t6/5/1502801226x2890202773.jpg" alt="image"></p>
+<p>半个小时之后回来了，找到该screen会话：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@TS-DEV ~]# screen -ls</div></pre></td></tr></table></figure>
+<p><img src="http://chuantu.biz/t6/5/1502801313x3031002306.jpg" alt="image"></p>
+<p>重新连接会话：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@TS-DEV ~]# screen -r 12865</div></pre></td></tr></table></figure>
+<p>一切都在。</p>
+<p>当然，如果你在另一台机器上没有分离一个Screen会话，就无从恢复会话了。<br>这时可以使用下面命令强制将这个会话从它所在的终端分离，转移到新的终端上来：</p>
+<p><img src="http://chuantu.biz/t6/5/1502801405x3031002306.jpg" alt="image"></p>
+<h3 id="清除dead-会话"><a href="#清除dead-会话" class="headerlink" title="清除dead 会话"></a>清除dead 会话</h3><p>如果由于某种原因其中一个会话死掉了（例如人为杀掉该会话），这时<code>screen -ls</code>会显示该会话为dead状态。使用<code>screen -wipe</code>命令清除该会话：</p>
+<p><img src="http://chuantu.biz/t6/5/1502801468x3031002306.jpg" alt="image"></p>
+<h3 id="关闭或杀死窗口"><a href="#关闭或杀死窗口" class="headerlink" title="关闭或杀死窗口"></a>关闭或杀死窗口</h3><p>正常情况下，当你退出一个窗口中最后一个程序（通常是bash）后，这个窗口就关闭了。另一个关闭窗口的方法是使用<code>C-a k</code>，这个快捷键杀死当前的窗口，同时也将杀死这个窗口中正在运行的进程。</p>
+<p>如果一个Screen会话中最后一个窗口被关闭了，那么整个Screen会话也就退出了，screen进程会被终止。</p>
+<p>除了依次退出/杀死当前Screen会话中所有窗口这种方法之外，还可以使用快捷键<code>C-a :</code>，然后输入quit命令退出Screen会话。需要注意的是，这样退出会杀死所有窗口并退出其中运行的所有程序。其实<code>C-a :</code>这个快捷键允许用户直接输入的命令有很多，包括分屏可以输入split等，这也是实现Screen功能的一个途径。</p>
+<h2 id="screen-高级应用"><a href="#screen-高级应用" class="headerlink" title="screen 高级应用"></a>screen 高级应用</h2><h3 id="会话共享"><a href="#会话共享" class="headerlink" title="会话共享"></a>会话共享</h3><p>还有一种比较好玩的会话恢复，可以实现会话共享。假设你在和朋友在不同地点以相同用户登录一台机器，然后你创建一个screen会话，你朋友可以在他的终端上命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@TS-DEV ~]# screen -x</div></pre></td></tr></table></figure>
+<p>这个命令会将你朋友的终端Attach到你的Screen会话上，并且你的终端不会被Detach。这样你就可以和朋友共享同一个会话了，如果你们当前又处于同一个窗口，那就相当于坐在同一个显示器前面，你的操作会同步演示给你朋友，你朋友的操作也会同步演示给你。当然，如果你们切换到这个会话的不同窗口中去，那还是可以分别进行不同的操作的。</p>
+<h3 id="会话锁定与解锁"><a href="#会话锁定与解锁" class="headerlink" title="会话锁定与解锁"></a>会话锁定与解锁</h3><p>Screen允许使用快捷键<code>C-a s</code>锁定会话。锁定以后，再进行任何输入屏幕都不会再有反应了。但是要注意虽然屏幕上看不到反应，但你的输入都会被Screen中的进程接收到。快捷键<code>C-a q</code>可以解锁一个会话。</p>
+<p>也可以使用<code>C-a x</code>锁定会话，不同的是这样锁定之后，会话会被Screen所属用户的密码保护，需要输入密码才能继续访问这个会话。</p>
+<h3 id="发送命令到screen会话"><a href="#发送命令到screen会话" class="headerlink" title="发送命令到screen会话"></a>发送命令到screen会话</h3><p>在Screen会话之外，可以通过screen命令操作一个Screen会话，这也为使用Screen作为脚本程序增加了便利。关于Screen在脚本中的应用超出了入门的范围，这里只看一个例子，体会一下在会话之外对Screen的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@TS-DEV ~]# screen -S sandy -X screen ping www.baidu.com</div></pre></td></tr></table></figure>
+<p>这个命令在一个叫做sandy的screen会话中创建一个新窗口，并在其中运行ping命令。</p>
+<h3 id="屏幕分割"><a href="#屏幕分割" class="headerlink" title="屏幕分割"></a>屏幕分割</h3><p>现在显示器那么大，将一个屏幕分割成不同区域显示不同的Screen窗口显然是个很酷的事情。可以使用快捷键<code>C-a S</code>将显示器水平分割，Screen 4.00.03版本以后，也支持垂直分屏，快捷键是<code>C-a |</code>。分屏以后，可以使用<code>C-a &lt;tab&gt;</code>在各个区块间切换，每一区块上都可以创建窗口并在其中运行进程。</p>
+<p>可以用<code>C-a X</code>快捷键关闭当前焦点所在的屏幕区块，也可以用<code>C-a Q</code>关闭除当前区块之外其他的所有区块。关闭的区块中的窗口并不会关闭，还可以通过窗口切换找到它。</p>
+<p><img src="http://chuantu.biz/t6/5/1502801836x3031002306.jpg" alt="image"></p>
+<h3 id="C-P模式和操作"><a href="#C-P模式和操作" class="headerlink" title="C/P模式和操作"></a>C/P模式和操作</h3><p>screen的另一个很强大的功能就是可以在不同窗口之间进行复制粘贴了。使用快捷键<code>C-a &lt;Esc&gt;</code>或者<code>C-a [</code>可以进入<strong>copy/paste</strong>模式，这个模式下可以像在vi中一样移动光标，并可以使用空格键设置标记。其实在这个模式下有很多类似vi的操作，譬如使用<code>/</code>进行搜索，使用<code>y</code>快速标记一行，使用<code>w</code>快速标记一个单词等。关于C/P模式下的高级操作，其文档的这一部分有比较详细的说明。</p>
+<p>一般情况下，可以移动光标到指定位置，按下空格设置一个开头标记，然后移动光标到结尾位置，按下空格设置第二个标记，同时会将两个标记之间的部分储存在copy/paste buffer中，并退出copy/paste模式。在正常模式下，可以使用快捷键<code>C-a ]</code>将储存在buffer中的内容粘贴到当前窗口。</p>
+<p><img src="http://chuantu.biz/t6/5/1502801957x3031002306.jpg" alt="image"></p>
+<h3 id="更多screen功能"><a href="#更多screen功能" class="headerlink" title="更多screen功能"></a>更多screen功能</h3><p>同大多数UNIX程序一样，GNU Screen提供了丰富强大的定制功能。你可以在Screen的默认两级配置文件<code>/etc/screenrc和$HOME/.screenrc</code>中指定更多，例如设定screen选项，定制绑定键，设定screen会话自启动窗口，启用多用户模式，定制用户访问权限控制等等。如果你愿意的话，也可以自己指定screen配置文件。</p>
+<p>以多用户功能为例，screen默认是以单用户模式运行的，你需要在配置文件中指定<code>multiuser on</code>来打开多用户模式，通过<code>acl*（acladd,acldel,aclchg...）</code>命令，你可以灵活配置其他用户访问你的screen会话。更多配置文件内容请参考screen的man页。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="MrLiZ WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="MrLiZ Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/screen/" rel="tag"># screen</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/14/Linux-crontab/" rel="next" title="Linux Crontab">
+                <i class="fa fa-chevron-left"></i> Linux Crontab
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="MrLiZ" />
+          <p class="site-author-name" itemprop="name">MrLiZ</p>
+           
+              <p class="site-description motion-element" itemprop="description">rage your dream</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MrLiZ" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#可能是最常用的screen命令"><span class="nav-number">1.</span> <span class="nav-text">可能是最常用的screen命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">3.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">4.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用screen参数"><span class="nav-number">5.</span> <span class="nav-text">常用screen参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-screen"><span class="nav-number">6.</span> <span class="nav-text">使用 screen</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装screen"><span class="nav-number">6.1.</span> <span class="nav-text">安装screen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个新的窗口"><span class="nav-number">6.2.</span> <span class="nav-text">创建一个新的窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看窗口和窗口名称"><span class="nav-number">6.3.</span> <span class="nav-text">查看窗口和窗口名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话分离与恢复"><span class="nav-number">6.4.</span> <span class="nav-text">会话分离与恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清除dead-会话"><span class="nav-number">6.5.</span> <span class="nav-text">清除dead 会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭或杀死窗口"><span class="nav-number">6.6.</span> <span class="nav-text">关闭或杀死窗口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#screen-高级应用"><span class="nav-number">7.</span> <span class="nav-text">screen 高级应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#会话共享"><span class="nav-number">7.1.</span> <span class="nav-text">会话共享</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话锁定与解锁"><span class="nav-number">7.2.</span> <span class="nav-text">会话锁定与解锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发送命令到screen会话"><span class="nav-number">7.3.</span> <span class="nav-text">发送命令到screen会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#屏幕分割"><span class="nav-number">7.4.</span> <span class="nav-text">屏幕分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-P模式和操作"><span class="nav-number">7.5.</span> <span class="nav-text">C/P模式和操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更多screen功能"><span class="nav-number">7.6.</span> <span class="nav-text">更多screen功能</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MrLiZ</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
